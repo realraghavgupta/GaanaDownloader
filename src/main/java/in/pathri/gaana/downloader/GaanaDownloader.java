@@ -1,31 +1,26 @@
 package in.pathri.gaana.downloader;
 
+import java.io.IOException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import in.pathri.gaana.utilities.UserLogin;
 
 public class GaanaDownloader {
 	static final Logger logger = LogManager.getLogger();
     public native String[] stringFromMethod();
 
-    static {
-        try {
-            System.loadLibrary("ViewAnim");
-        } catch (UnsatisfiedLinkError e) {
-            e.printStackTrace();
-        }
-    }
-
 	public static void main(String[] args) {
-		logger.traceEntry("Parameters::{}",args);
-		GaanaDownloader thisObj = new GaanaDownloader();
-		thisObj.testNative();
+		logger.traceEntry("Parameters::{}",args);		
+		try {
+			bulkDownload();
+			System.out.println("Please press Enter key to exit");
+			System.in.read();
+		} catch (IOException e) {
+			logger.catching(e);
+		}
 		logger.traceExit();
-	}
-	
-	public void testNative(){
-		logger.traceEntry();
-		String[] stringFromMethod = stringFromMethod();
-		logger.traceExit(stringFromMethod);
 	}
 	
 	public static void bulkDownload(){
@@ -44,8 +39,9 @@ public class GaanaDownloader {
 		generateLog	//Generate log
 		exit //close excel handles if any				
 */		
-		
-		
+		if(UserLogin.doLogin()){
+			logger.info("Login Successfull");			
+		}
 		
 		logger.traceExit();
 	}

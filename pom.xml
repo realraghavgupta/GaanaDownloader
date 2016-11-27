@@ -59,7 +59,7 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
-							<outputFile>binaries/${project.artifactId}-${project.version}.jar</outputFile>
+							<outputFile>${project.build.directory}/${project.artifactId}.jar</outputFile>
 							<transformers>
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
@@ -70,6 +70,29 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+			    <artifactId>maven-assembly-plugin</artifactId>
+			    <version>2.6</version>
+			    <configuration>
+			    	<finalName>${project.artifactId}-${project.version}</finalName>
+			    	<appendAssemblyId>false</appendAssemblyId>
+			    </configuration>
+			    <executions>
+			        <execution>
+			            <id>assemble</id>
+			            <goals>
+			                <goal>single</goal>
+			            </goals>
+			            <phase>package</phase>
+			            <configuration>
+			            	<outputDirectory>binaries</outputDirectory>
+			                <descriptors>
+			                    <descriptor>src/assembly/zip.xml</descriptor>
+			                </descriptors>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
@@ -115,9 +138,8 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<scm>
-
-		<connection>https://github.com/PathriK/GaanaDownloader.git</connection>
-		<developerConnection>https://github.com/PathriK/GaanaDownloader.git</developerConnection>
+		<connection>scm:git:git@github.com:PathriK/GaanaDownloader.git</connection>
+		<developerConnection>scm:git:git@github.com:PathriK/GaanaDownloader.git</developerConnection>
 		<url>https://github.com/PathriK/GaanaDownloader</url>
 		<tag>HEAD</tag>
 	</scm>
