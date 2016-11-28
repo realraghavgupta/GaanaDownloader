@@ -59,8 +59,7 @@ public class UserLogin {
 	}
 	
 	public static User getUserCred(){
-		User user = PropertyReader.getUserCred();
-		if(user.isEmpty()){
+		if(null == user || user.isEmpty()){
 			return promptForCred();
 		}
 		return user;

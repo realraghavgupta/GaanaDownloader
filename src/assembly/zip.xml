@@ -13,10 +13,6 @@
         <file>
             <source>src/main/resources/external/GaanaDownloader.bat</source>
             <outputDirectory>/</outputDirectory>
-        </file>
-        <file>
-            <source>src/main/resources/external/GaanaCred.dat</source>
-            <outputDirectory>/</outputDirectory>
-        </file>        
+        </file>      
     </files>
 </assembly>
