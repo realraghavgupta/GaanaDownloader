@@ -5,5 +5,5 @@ public class Global {
 	public static String PASSWORD_PROMPT = "Please Enter your Password:";
 	
 	public static String GAANA_BASE_URL = "http://api.gaana.com";
-	public static String LOGIN_ENDPOINT = "/user.php";
+	public static String LOGIN_ENDPOINT = "/user.php";	
 }

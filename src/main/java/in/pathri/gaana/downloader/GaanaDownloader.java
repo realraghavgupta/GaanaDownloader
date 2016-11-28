@@ -5,7 +5,8 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import in.pathri.gaana.utilities.UserLogin;
+import in.pathri.gaana.constants.Language;
+import in.pathri.gaana.constants.SearchType;
 
 public class GaanaDownloader {
 	static final Logger logger = LogManager.getLogger();
@@ -40,7 +41,8 @@ public class GaanaDownloader {
 		exit //close excel handles if any				
 */		
 		if(UserLogin.doLogin()){
-			logger.info("Login Successfull");			
+			logger.info("Login Successfull");
+			GaanaSearch.doSearch(SearchType.ALL_ALBUMS,Language.TAMIL);
 		}
 		
 		logger.traceExit();

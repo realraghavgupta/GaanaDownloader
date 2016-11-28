@@ -1,4 +1,4 @@
-package in.pathri.gaana.utilities;
+package in.pathri.gaana.downloader;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +9,9 @@ import org.apache.logging.log4j.Logger;
 
 import in.pathri.gaana.constants.Global;
 import in.pathri.gaana.dao.User;
+import in.pathri.gaana.utilities.HTTPHelper;
+import in.pathri.gaana.utilities.MiscUtilities;
+import in.pathri.gaana.utilities.PropertyReader;
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
 
