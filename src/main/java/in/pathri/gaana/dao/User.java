@@ -1,6 +1,6 @@
 package in.pathri.gaana.dao;
 
-public class User {
+public class User implements java.io.Serializable {
 	private String userName;
 	private String password;
 	private String token;

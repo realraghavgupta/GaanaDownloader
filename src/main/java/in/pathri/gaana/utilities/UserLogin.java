@@ -16,6 +16,10 @@ public class UserLogin {
 	static final Logger logger = LogManager.getLogger();
 	private static User user;
 	
+	static {
+		user = PropertyReader.getUserObj();
+	}
+	
 	public static String doLogin(User user){
 		String token = "";
 		Map<String, String> params = new HashMap<String,String>();
