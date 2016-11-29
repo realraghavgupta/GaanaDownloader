@@ -2,6 +2,8 @@
 
 [![Join the chat at https://gitter.im/PathriK/GaanaDownloader](https://badges.gitter.im/PathriK/GaanaDownloader.svg)](https://gitter.im/PathriK/GaanaDownloader?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+[![Build Status](https://travis-ci.org/PathriK/GaanaDownloader.svg?branch=master)](https://travis-ci.org/PathriK/GaanaDownloader)
+
 A Java tool to download and convert songs to MP3 from Gaana in Bulk
 
 ## Gaana:
