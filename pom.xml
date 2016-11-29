@@ -38,11 +38,15 @@
 			<name>libs-snapshot</name>
 			<url>https://oss.jfrog.org/artifactory/libs-snapshot</url>
 		</repository>
-    <repository>
-      <id>jcenter</id>
-      <url>http://jcenter.bintray.com/</url>
-    </repository>
-  </repositories>
+                <repository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>bintray-pathrik-PathriK</id>
+                    <name>bintray</name>
+                    <url>http://dl.bintray.com/pathrik/PathriK</url>
+                </repository>
+  	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>in.pathri.gaana</groupId>
