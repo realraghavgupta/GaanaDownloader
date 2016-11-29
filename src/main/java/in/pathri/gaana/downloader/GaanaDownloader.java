@@ -1,12 +1,14 @@
 package in.pathri.gaana.downloader;
 
 import java.io.IOException;
+import java.nio.file.attribute.UserPrincipal;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import in.pathri.gaana.constants.Language;
 import in.pathri.gaana.constants.SearchType;
+import in.pathri.gaana.utilities.UserPromts;
 
 public class GaanaDownloader {
 	static final Logger logger = LogManager.getLogger();
@@ -40,9 +42,18 @@ public class GaanaDownloader {
 		generateLog	//Generate log
 		exit //close excel handles if any				
 */		
+
+		
 		if(UserLogin.doLogin()){
 			logger.info("Login Successfull");
-			GaanaSearch.doSearch(SearchType.ALL_ALBUMS,Language.TAMIL);
+			boolean doNewSearch = UserPromts.doNewSearch();
+			if(doNewSearch){
+				logger.info("Doing a new search");
+				GaanaSearch.doSearch(SearchType.ALL_ALBUMS,Language.TAMIL);
+			}else{
+				logger.info("Downloading");
+			}			
+			
 		}
 		
 		logger.traceExit();

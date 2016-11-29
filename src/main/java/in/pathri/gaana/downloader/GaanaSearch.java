@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import in.pathri.gaana.constants.Global;
 import in.pathri.gaana.constants.Language;
 import in.pathri.gaana.constants.SearchType;
+import in.pathri.gaana.dao.SearchResults;
 import in.pathri.gaana.utilities.HTTPHelper;
 import in.pathri.gaana.utilities.SearchParamHelper;
 import net.minidev.json.JSONArray;
@@ -17,7 +18,6 @@ import net.minidev.json.JSONValue;
 public class GaanaSearch {
 	static final Logger logger = LogManager.getLogger();
 	private static SearchParamHelper paramObj = new SearchParamHelper();	
-	private static JSONArray searchResultsArray = new JSONArray();
 	
 	public static void doSearch(SearchType searchType, Language language) {
 		logger.entry(searchType,language);
@@ -27,6 +27,8 @@ public class GaanaSearch {
 		int searchCount = 0;
 		JSONObject userData;
 		JSONArray tempSearchResults;
+		
+		SearchResults.resetResults();
 		
 		Map<String, String> params = getSearchParams(searchType, language);
 		if (params.isEmpty()) {
@@ -44,13 +46,13 @@ public class GaanaSearch {
 		
 		totalResult = (int) userData.get("count");
 		logger.debug("totalResult of Initial Request::{}",totalResult);
-		searchResultsArray.ensureCapacity(totalResult + 10);
+		SearchResults.updateSize(totalResult);
 		
 		tempSearchResults = (JSONArray) userData.get("album");
 		logger.debug("tempSearchResult::{}",tempSearchResults);
 		logger.debug("tempSearchResultSize::{}",tempSearchResults.size());
-		searchResultsArray.addAll(tempSearchResults);
-		logger.debug("searchResultsArray Size:{}",searchResultsArray.size());
+		SearchResults.appendResult(tempSearchResults);
+		logger.debug("searchResultsArray Size:{}",SearchResults.getSize());
 		searchCount = tempSearchResults.size();
 		start = start + searchCount;
 		logger.debug("Start count:{}",start);
@@ -61,17 +63,16 @@ public class GaanaSearch {
 				return;
 			}
 			tempSearchResults = (JSONArray) userData.get("album");
-			searchResultsArray.addAll(tempSearchResults);
+			SearchResults.appendResult(tempSearchResults);
 			searchCount = tempSearchResults.size();
 			start = start + searchCount;			
 		}
-		logger.debug("Search Result::{}",searchResultsArray.toJSONString());
+		logger.debug("Search Result::{}",SearchResults.getAsString());
 		//TODO: Update local data store with data; searchResultsArray
 		//TODO: Get total count and update totalResult
 		//TODO: loop for total count by using limit update
 		//TODO: Update pendingItems & start			
 		logger.traceExit();
-
 	}
 
 	private static Map<String, String> getSearchParams(SearchType searchType, Language language) {

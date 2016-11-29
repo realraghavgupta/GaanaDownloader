@@ -6,9 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import in.pathri.gaana.dao.User;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import in.pathri.gaana.dao.User;
 
 public class PropertyHelper {
 	static final Logger logger = LogManager.getLogger();
@@ -61,6 +63,8 @@ public class PropertyHelper {
 			} catch (IOException e) {
 				logger.catching(e);
 			}
+		} else {
+			logger.warn("Deserialise File not found:{}", f.getAbsolutePath());
 		}
 		return obj;
 	}

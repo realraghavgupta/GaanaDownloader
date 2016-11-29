@@ -12,6 +12,7 @@ import in.pathri.gaana.dao.User;
 import in.pathri.gaana.utilities.HTTPHelper;
 import in.pathri.gaana.utilities.MiscUtilities;
 import in.pathri.gaana.utilities.PropertyHelper;
+import in.pathri.gaana.utilities.UserPromts;
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
 
@@ -44,33 +45,16 @@ public class UserLogin {
 		return token;
 	}
 	
-	public static User promptForCred(){
-		String userName = "";
-		String password = "";
-		
-		Scanner input = new Scanner(System.in);
-		
-		System.out.println(Global.USERNAME_PROMPT);
-		userName = input.nextLine();
-		
-		System.out.println(Global.PASSWORD_PROMPT);
-		password = input.nextLine();
-		
-//		input.close();
-		
-		return new User(userName, password); 
-	}
-	
 	public static User getUserCred(){
 		if(null == user || user.isEmpty()){
-			return promptForCred();
+			return UserPromts.promptForCred();
 		}
 		return user;
 	}
 	
 	public static boolean doLogin(){
 		if(null == user){
-			user = promptForCred();
+			user = UserPromts.promptForCred();
 		}
 		if(null != user && !user.hasToken()){
 			String token = doLogin(user);
