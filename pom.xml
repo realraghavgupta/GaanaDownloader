@@ -1,10 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>in.pathri.gaana</groupId>
-  <artifactId>GaanaDownloader</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <name>GaanaDownloader</name>
-  <description>Download Songs from Gaana</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>in.pathri.gaana</groupId>
+	<artifactId>GaanaDownloader</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<name>GaanaDownloader</name>
+	<description>Download Songs from Gaana</description>
 	<url>https://github.com/PathriK/GaanaDownloader</url>
 	<inceptionYear>2016</inceptionYear>
 	<issueManagement>
@@ -38,15 +39,15 @@
 			<name>libs-snapshot</name>
 			<url>https://oss.jfrog.org/artifactory/libs-snapshot</url>
 		</repository>
-                <repository>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                    <id>bintray-pathrik-PathriK</id>
-                    <name>bintray</name>
-                    <url>http://dl.bintray.com/pathrik/PathriK</url>
-                </repository>
-  	</repositories>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>central</id>
+			<name>bintray</name>
+			<url>http://jcenter.bintray.com</url>
+		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>in.pathri.gaana</groupId>
@@ -79,28 +80,28 @@
 				</executions>
 			</plugin>
 			<plugin>
-			    <artifactId>maven-assembly-plugin</artifactId>
-			    <version>2.6</version>
-			    <configuration>
-			    	<finalName>${project.artifactId}-${project.version}</finalName>
-			    	<appendAssemblyId>false</appendAssemblyId>
-			    </configuration>
-			    <executions>
-			        <execution>
-			            <id>assemble</id>
-			            <goals>
-			                <goal>single</goal>
-			            </goals>
-			            <phase>package</phase>
-			            <configuration>
-			            	<outputDirectory>binaries</outputDirectory>
-			                <descriptors>
-			                    <descriptor>src/assembly/zip.xml</descriptor>
-			                </descriptors>
-			            </configuration>
-			        </execution>
-			    </executions>
-			</plugin>			
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<finalName>${project.artifactId}-${project.version}</finalName>
+					<appendAssemblyId>false</appendAssemblyId>
+				</configuration>
+				<executions>
+					<execution>
+						<id>assemble</id>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<outputDirectory>binaries</outputDirectory>
+							<descriptors>
+								<descriptor>src/assembly/zip.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
@@ -162,5 +163,5 @@
 			<name>pathrik-PathriK-snapshots</name>
 			<url>http://oss.jfrog.org/artifactory/oss-snapshot-local</url>
 		</snapshotRepository>
-	</distributionManagement>  
+	</distributionManagement>
 </project>
