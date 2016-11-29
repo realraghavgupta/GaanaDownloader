@@ -54,7 +54,7 @@ public class GaanaSearch {
 		searchCount = tempSearchResults.size();
 		start = start + searchCount;
 		logger.debug("Start count:{}",start);
-		while(start > totalResult){
+		while(start < totalResult){
 			params = updateLimit(start, count);
 			userData = sendSearchReq(params);
 			if(null == userData){
