@@ -10,7 +10,7 @@ import in.pathri.gaana.dao.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class PropertyReader {
+public class PropertyHelper {
 	static final Logger logger = LogManager.getLogger();
 
 	public static void setUserObj(User user) {

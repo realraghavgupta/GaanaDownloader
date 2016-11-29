@@ -11,7 +11,7 @@ import in.pathri.gaana.constants.Global;
 import in.pathri.gaana.dao.User;
 import in.pathri.gaana.utilities.HTTPHelper;
 import in.pathri.gaana.utilities.MiscUtilities;
-import in.pathri.gaana.utilities.PropertyReader;
+import in.pathri.gaana.utilities.PropertyHelper;
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
 
@@ -20,7 +20,7 @@ public class UserLogin {
 	private static User user;
 	
 	static {
-		user = PropertyReader.getUserObj();
+		user = PropertyHelper.getUserObj();
 	}
 	
 	public static String doLogin(User user){
@@ -76,6 +76,7 @@ public class UserLogin {
 			String token = doLogin(user);
 			if(!token.isEmpty()){
 				user.setToken(token);
+				PropertyHelper.setUserObj(user);
 			}			
 		}
 		if(user.hasToken()){
