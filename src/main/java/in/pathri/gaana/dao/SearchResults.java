@@ -10,7 +10,8 @@ public class SearchResults {
 	}
 	
 	public static void appendResult(JSONArray tempResults){
-		searchResultsArray.addAll(tempResults);
+		searchResultsArray.
+		addAll(tempResults);
 	}
 	
 	public static void updateSize(int size){
@@ -23,5 +24,9 @@ public class SearchResults {
 	
 	public static String getAsString(){
 		return searchResultsArray.toJSONString();
+	}
+	
+	public static JSONArray getResultArray(){
+		return searchResultsArray;
 	}
 }

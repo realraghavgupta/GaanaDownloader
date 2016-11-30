@@ -6,6 +6,7 @@ import java.nio.file.attribute.UserPrincipal;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import in.pathri.gaana.constants.ExportType;
 import in.pathri.gaana.constants.Language;
 import in.pathri.gaana.constants.SearchType;
 import in.pathri.gaana.utilities.UserPromts;
@@ -50,6 +51,7 @@ public class GaanaDownloader {
 			if(doNewSearch){
 				logger.info("Doing a new search");
 				GaanaSearch.doSearch(SearchType.ALL_ALBUMS,Language.TAMIL);
+				SearchExporter.exportSearchResults(ExportType.CSV, "SearchResult.csv");
 			}else{
 				logger.info("Downloading");
 			}			
