@@ -15,7 +15,9 @@ public class Global {
 	public static final String PASSWORD_PROMPT = "Please Enter your Password:";
 	
 	public static final String DO_NEW_SEARCH_PROMPT = "Do you want to do a new Search or downlaod using updated Excel?";
-	public static final String DO_NEW_SEARCH_PROMPT_NEW_SEARCH = "[1] Do a new search";
-	public static final String DO_NEW_SEARCH_PROMPT_DOWNLOAD = "[2] Download using updated Excel";
-	public static final String GENERIC_LOGIN_ERROR = "Unknown Login Error!";	
+	public static final String DO_NEW_SEARCH_PROMPT_NEW_SEARCH = "Do a new search";
+	public static final String DO_NEW_SEARCH_PROMPT_DOWNLOAD = "Download using updated Excel";
+	public static final String GENERIC_LOGIN_ERROR = "Unknown Login Error!";
+	public static final String LANGUAGE_PROMPT = "Please select the language:";
+	public static final String SEARCHTYPE_PROMPT = "Please select a type of Search";	
 }

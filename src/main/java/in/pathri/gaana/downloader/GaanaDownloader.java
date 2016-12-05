@@ -50,7 +50,9 @@ public class GaanaDownloader {
 			boolean doNewSearch = UserPromts.doNewSearch();
 			if(doNewSearch){
 				logger.info("Doing a new search");
-				GaanaSearch.doSearch(SearchType.ALL_ALBUMS,Language.TAMIL);
+				Language language = UserPromts.getSearchLanguage();
+				SearchType searchType = UserPromts.getSearchType();
+				GaanaSearch.doSearch(searchType,language);
 				SearchExporter.exportSearchResults(ExportType.CSV, "SearchResult.csv");
 			}else{
 				logger.info("Downloading");

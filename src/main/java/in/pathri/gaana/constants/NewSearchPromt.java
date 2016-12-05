@@ -9,28 +9,28 @@ public enum NewSearchPromt {
 	private int value;
 	
 
-	NewSearchPromt(final String name, final int value) {
-		this.name = name;
-		this.value = value;
+	NewSearchPromt(final String value, final int option) {
+		this.name = value;
+		this.value = option;
 	}
 
-	public int getValue() {
+	public int getOption() {
 		return value;
 	}
 	
-	public String getName(){
+	public String getValue(){
 		return name;
 	}
 
 	public static NewSearchPromt getEnum(String value){
 	    for(NewSearchPromt v : values())
-            if(v.getValue() == MiscUtilities.parseInt(value)) return v;
+            if(v.getOption() == MiscUtilities.parseInt(value)) return v;
         throw new IllegalArgumentException();		
 	}
 	
 	@Override
 	public String toString() {
-		return this.getName();
+		return this.getValue();
 	}
 	
 }
