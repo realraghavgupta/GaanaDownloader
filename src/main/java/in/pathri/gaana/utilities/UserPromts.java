@@ -47,4 +47,8 @@ public class UserPromts {
 		}
 		return false;
 	}
+
+	public static void promptWrongCred(String message) {
+		System.out.println(message);
+	}
 }

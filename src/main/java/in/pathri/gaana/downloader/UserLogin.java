@@ -26,6 +26,8 @@ public class UserLogin {
 	
 	public static String doLogin(User user){
 		String token = "";
+		String errorMessage = "";
+		int status = 0;
 		Map<String, String> params = new HashMap<String,String>();
 		params.put("type", "nxtgen_authenticate");
 		params.put("username", user.getUserName());
@@ -36,7 +38,19 @@ public class UserLogin {
 		try {
 			String loginResponse = HTTPHelper.sendPost(login_url, params);
 			JSONObject userData = (JSONObject) JSONValue.parse(loginResponse);
-			token = userData.getAsString("token");
+			if(userData.containsKey("token")){
+				token = userData.getAsString("token");	
+			}else{
+				if(userData.containsKey("Error")){
+					errorMessage = userData.getAsString("Error");					
+				}else if(userData.containsKey("error")){
+					errorMessage = userData.getAsString("error");
+				}else{
+					errorMessage = Global.GENERIC_LOGIN_ERROR;
+				}
+				UserPromts.promptWrongCred(errorMessage);
+			}
+			
 		} catch (Exception e) {
 			logger.catching(e);
 			token = "";
