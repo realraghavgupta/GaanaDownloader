@@ -15,6 +15,7 @@ import in.pathri.gaana.downloader.DownloadLinkHelper;
 public class UserPromts {
 	static final Logger logger = LogManager.getLogger();
 	private static Scanner input;
+
 	static {
 		input = new Scanner(System.in);
 	}
@@ -41,7 +42,6 @@ public class UserPromts {
 		System.out.println(NewSearchPromt.NEW_SEARCH.getValue());
 		printOptionNumber(NewSearchPromt.DOWNLOAD.getOption());
 		System.out.println(NewSearchPromt.DOWNLOAD.getValue());
-		// logger.info(NewSearchPromt.values().toString());
 		while ((NewSearchPromt.NEW_SEARCH.getOption() != MiscUtilities.parseInt(option))
 				&& (NewSearchPromt.DOWNLOAD.getOption() != MiscUtilities.parseInt(option))) {
 			System.out.println(Global.OPTION_PROMT);
@@ -108,7 +108,7 @@ public class UserPromts {
 	}
 
 	public static boolean hasUpdatedResultsSheet() {
-		if(yesNoPrompt(Global.HAS_UPDATED_RESULTS)){
+		if (yesNoPrompt(Global.HAS_UPDATED_RESULTS)) {
 			return DownloadLinkHelper.checkIfResultsUpdated();
 		}
 		return false;
@@ -123,8 +123,8 @@ public class UserPromts {
 		System.out.println(Global.LINKS_GENERATED_PROMPT);
 		doExit();
 	}
-	
-	private static boolean yesNoPrompt(String prompt){
+
+	private static boolean yesNoPrompt(String prompt) {
 		String userResponse = "";
 		while (true) {
 			System.out.println(prompt);
@@ -135,7 +135,7 @@ public class UserPromts {
 			} else if ("no".equals(userResponse) || "n".equals(userResponse)) {
 				return false;
 			}
-		}		
+		}
 	}
 
 	private static void printOptionNumber(int option) {

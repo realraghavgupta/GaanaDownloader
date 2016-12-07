@@ -13,11 +13,11 @@ public class User implements java.io.Serializable {
 	public String getUserName() {
 		return userName;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public String getToken() {
 		return this.token;
 	}
@@ -25,15 +25,15 @@ public class User implements java.io.Serializable {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	
-	public boolean isEmpty(){
-		if(userName.isEmpty() || password.isEmpty()){
+
+	public boolean isEmpty() {
+		if (userName.isEmpty() || password.isEmpty()) {
 			return true;
 		}
 		return false;
 	}
-	
-	public boolean hasToken(){
+
+	public boolean hasToken() {
 		return (null != token && !token.isEmpty());
 	}
 }

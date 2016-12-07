@@ -19,67 +19,65 @@ import net.minidev.json.JSONValue;
 public class UserLogin {
 	static final Logger logger = LogManager.getLogger();
 	private static User user;
-	
+
 	static {
 		user = PropertyHelper.getUserObj();
 	}
-	
-	public static String doLogin(User user){
+
+	public static String doLogin(User user) {
 		String token = "";
 		String errorMessage = "";
-		Map<String, String> params = new HashMap<String,String>();
+		Map<String, String> params = new HashMap<String, String>();
 		params.put("type", "nxtgen_authenticate");
 		params.put("username", user.getUserName());
 		params.put("password", user.getPassword());
-		
+
 		String login_url = MiscUtilities.getGaanURL(Global.LOGIN_ENDPOINT);
-		
+
 		try {
 			String loginResponse = HTTPHelper.sendPost(login_url, params);
 			JSONObject userData = (JSONObject) JSONValue.parse(loginResponse);
-			if(userData.containsKey("token")){
-				token = userData.getAsString("token");	
-			}else{
-				if(userData.containsKey("Error")){
-					errorMessage = userData.getAsString("Error");					
-				}else if(userData.containsKey("error")){
+			if (userData.containsKey("token")) {
+				token = userData.getAsString("token");
+			} else {
+				if (userData.containsKey("Error")) {
+					errorMessage = userData.getAsString("Error");
+				} else if (userData.containsKey("error")) {
 					errorMessage = userData.getAsString("error");
-				}else{
+				} else {
 					errorMessage = Global.GENERIC_LOGIN_ERROR;
 				}
 				UserPromts.promptWrongCred(errorMessage);
 			}
-			
 		} catch (Exception e) {
 			logger.catching(e);
 			token = "";
 		}
-		
 		return token;
 	}
-	
-	public static User getUser(){
-		if(null == user || user.isEmpty()){
+
+	public static User getUser() {
+		if (null == user || user.isEmpty()) {
 			return UserPromts.promptForCred();
 		}
 		return user;
 	}
-	
-	public static boolean doLogin(){
-		if(null == user){
+
+	public static boolean doLogin() {
+		if (null == user) {
 			user = UserPromts.promptForCred();
 		}
-		if(null != user && !user.hasToken()){
+		if (null != user && !user.hasToken()) {
 			String token = doLogin(user);
-			if(!token.isEmpty()){
+			if (!token.isEmpty()) {
 				user.setToken(token);
 				PropertyHelper.setUserObj(user);
-			}			
+			}
 		}
-		if(user.hasToken()){
-			logger.info("User Token::{}",user.getToken());
+		if (user.hasToken()) {
+			logger.info("User Token::{}", user.getToken());
 			DownloadParamHelper.setUserToken(user.getToken());
-			return true;			
+			return true;
 		}
 		return false;
 	}

@@ -36,7 +36,6 @@ public class CSVExporterImport implements ExporterImportInterface {
 			writer.writeNext(headers);
 		}
 		logger.traceExit();
-
 	}
 
 	@Override
@@ -68,11 +67,9 @@ public class CSVExporterImport implements ExporterImportInterface {
 				writer.close();
 			} catch (IOException e) {
 				logger.catching(e);
-
 			}
 		}
 		logger.traceExit();
-
 	}
 
 	@Override
@@ -93,6 +90,7 @@ public class CSVExporterImport implements ExporterImportInterface {
 		}
 		return null;
 	}
+
 	@Override
 	public String[] getNextRecord() {
 		try {
@@ -102,6 +100,7 @@ public class CSVExporterImport implements ExporterImportInterface {
 		}
 		return null;
 	}
+
 	@Override
 	public List<String[]> getAllValues() {
 		try {
@@ -123,7 +122,5 @@ public class CSVExporterImport implements ExporterImportInterface {
 		}
 		return null;
 	}
-
-
 
 }

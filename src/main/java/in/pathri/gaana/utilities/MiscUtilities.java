@@ -25,7 +25,6 @@ public class MiscUtilities {
 				logger.catching(e);
 			}
 		}
-
 	}
 
 	public static int parseInt(String value) {
@@ -39,5 +38,4 @@ public class MiscUtilities {
 			}
 		}
 	}
-
 }

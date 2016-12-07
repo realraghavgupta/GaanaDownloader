@@ -17,7 +17,7 @@ public class SearchParamHelper {
 	private Map<String, String> params = new HashMap<String, String>();
 
 	public void initParams(String type, String subType) {
-		logger.entry(type,subType);
+		logger.entry(type, subType);
 		this.type = type;
 		this.subType = subType;
 		logger.traceExit();
@@ -30,12 +30,12 @@ public class SearchParamHelper {
 	}
 
 	public void updateLimit(int start, int count) {
-		logger.entry(start,count);
+		logger.entry(start, count);
 		params.put("limit", String.valueOf(start) + "," + String.valueOf(count));
 		logger.traceExit();
 	}
 
-	public Map<String, String> getParams() {		
+	public Map<String, String> getParams() {
 		if (type == "" || subType == "") {
 			logger.traceExit("Returning Empty params");
 			return params;

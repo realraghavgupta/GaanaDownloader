@@ -15,11 +15,11 @@ public class DownloadParamHelper {
 	private String track_id;
 	private String hashCode;
 	private Map<String, String> params = new HashMap<String, String>();
-	
-	public static void setUserToken(String token){
-		DownloadParamHelper.token = token;		
+
+	public static void setUserToken(String token) {
+		DownloadParamHelper.token = token;
 	}
-	
+
 	public void initParams(ConnectionType connectionType, Quality quality, DeliveryType deliveryType) {
 		this.connectionType = connectionType;
 		this.quality = quality;
@@ -28,36 +28,35 @@ public class DownloadParamHelper {
 
 	public void setTrackId(String track_id) {
 		this.track_id = track_id;
-		this.hashCode = GaanaUtilities.getHashCode(track_id,token);
-		if(params.isEmpty()){
+		this.hashCode = GaanaUtilities.getHashCode(track_id, token);
+		if (params.isEmpty()) {
 			generateParams();
-		}else{
+		} else {
 			updateParams();
 		}
 	}
 
 	public Map<String, String> getParams() {
-		if(params.isEmpty()){
+		if (params.isEmpty()) {
 			generateParams();
 		}
 		return params;
 	}
 
 	private void generateParams() {
-		if(null != track_id && !track_id.isEmpty())
+		if (null != track_id && !track_id.isEmpty())
 			params.put("track_id", track_id);
-		if(null != hashCode && !hashCode.isEmpty())
+		if (null != hashCode && !hashCode.isEmpty())
 			params.put("hashcode", hashCode);
 		params.put("connection_type", connectionType.getName());
 		params.put("token", token);
 		params.put("quality", quality.getName());
 		params.put("delivery_type", deliveryType.getName());
 	}
-	
-	private void updateParams(){
+
+	private void updateParams() {
 		params.put("track_id", track_id);
 		params.put("hashcode", hashCode);
 	}
-	
-	
+
 }
