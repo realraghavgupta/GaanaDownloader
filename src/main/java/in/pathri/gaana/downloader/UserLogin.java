@@ -2,13 +2,13 @@ package in.pathri.gaana.downloader;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import in.pathri.gaana.constants.Global;
 import in.pathri.gaana.dao.User;
+import in.pathri.gaana.utilities.DownloadParamHelper;
 import in.pathri.gaana.utilities.HTTPHelper;
 import in.pathri.gaana.utilities.MiscUtilities;
 import in.pathri.gaana.utilities.PropertyHelper;
@@ -27,7 +27,6 @@ public class UserLogin {
 	public static String doLogin(User user){
 		String token = "";
 		String errorMessage = "";
-		int status = 0;
 		Map<String, String> params = new HashMap<String,String>();
 		params.put("type", "nxtgen_authenticate");
 		params.put("username", user.getUserName());
@@ -59,7 +58,7 @@ public class UserLogin {
 		return token;
 	}
 	
-	public static User getUserCred(){
+	public static User getUser(){
 		if(null == user || user.isEmpty()){
 			return UserPromts.promptForCred();
 		}
@@ -79,7 +78,7 @@ public class UserLogin {
 		}
 		if(user.hasToken()){
 			logger.info("User Token::{}",user.getToken());
-			//TODO: Set service with token
+			DownloadParamHelper.setUserToken(user.getToken());
 			return true;			
 		}
 		return false;

@@ -1,14 +1,13 @@
 package in.pathri.gaana.downloader;
 
-import java.io.IOException;
-import java.nio.file.attribute.UserPrincipal;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import in.pathri.gaana.constants.ExportType;
+import in.pathri.gaana.constants.Global;
 import in.pathri.gaana.constants.Language;
 import in.pathri.gaana.constants.SearchType;
+import in.pathri.gaana.utilities.MiscUtilities;
 import in.pathri.gaana.utilities.UserPromts;
 
 public class GaanaDownloader {
@@ -19,9 +18,9 @@ public class GaanaDownloader {
 		logger.traceEntry("Parameters::{}",args);		
 		try {
 			bulkDownload();
-			System.out.println("Please press Enter key to exit");
-			System.in.read();
-		} catch (IOException e) {
+			logger.traceExit();
+			UserPromts.doExit();
+		} catch (Exception e) {
 			logger.catching(e);
 		}
 		logger.traceExit();
@@ -53,14 +52,24 @@ public class GaanaDownloader {
 				Language language = UserPromts.getSearchLanguage();
 				SearchType searchType = UserPromts.getSearchType();
 				GaanaSearch.doSearch(searchType,language);
-				SearchExporter.exportSearchResults(ExportType.CSV, "SearchResult.csv");
-			}else{
-				logger.info("Downloading");
-			}			
-			
-		}
-		
+				SearchExporter.exportSearchResults(ExportType.CSV, Global.SEARCH_RESULTS_FILE_NAME);
+				boolean waitForUserSelection = UserPromts.waitForUserSelection();
+				if(!waitForUserSelection){					
+					logger.traceExit();
+					UserPromts.doExit();
+				}
+				MiscUtilities.openSearchResult();
+			}
+			boolean hasUpdatedResultsSheet = UserPromts.hasUpdatedResultsSheet();
+			if(!hasUpdatedResultsSheet){
+				logger.traceExit();
+				UserPromts.pleaseUpdateResultsSheet();				
+			}
+			DownloadLinkHelper.generateDownloadLinks();
+			DownloadLinkHelper.exportDownloadLinks();
+			logger.traceExit();
+			UserPromts.linksGenerated();				
+		}		
 		logger.traceExit();
 	}
-
 }
