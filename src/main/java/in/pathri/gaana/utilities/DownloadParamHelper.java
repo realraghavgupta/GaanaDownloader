@@ -6,6 +6,7 @@ import java.util.Map;
 import in.pathri.gaana.constants.DownloadParam.ConnectionType;
 import in.pathri.gaana.constants.DownloadParam.DeliveryType;
 import in.pathri.gaana.constants.DownloadParam.Quality;
+import in.pathri.gaana.constants.Global;
 
 public class DownloadParamHelper {
 	private static String token;
@@ -28,7 +29,7 @@ public class DownloadParamHelper {
 
 	public void setTrackId(String track_id) {
 		this.track_id = track_id;
-		this.hashCode = GaanaUtilities.getHashCode(track_id, token);
+		this.hashCode = GaanaUtilities.getHashCode(track_id, Global.HASH_KEY);
 		if (params.isEmpty()) {
 			generateParams();
 		} else {

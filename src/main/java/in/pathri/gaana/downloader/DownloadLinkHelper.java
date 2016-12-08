@@ -19,7 +19,7 @@ import net.minidev.json.JSONValue;
 public class DownloadLinkHelper {
 	static final Logger logger = LogManager.getLogger();
 	private static List<String[]> importedResults;
-	private static List<String[]> downloadLinks;
+	private static List<String[]> downloadLinks = new ArrayList<String[]>();
 	private static final String getDownloadLinkURL = Global.GAANA_BASE_URL + Global.GET_DOWNLOAD_URL_ENDPOINT;
 
 	public static void generateDownloadLinks() {

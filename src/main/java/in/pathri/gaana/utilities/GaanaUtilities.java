@@ -1,24 +1,18 @@
 package in.pathri.gaana.utilities;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
-
-import javax.crypto.Cipher;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.digest.HmacUtils;
 
-import in.pathri.gaana.constants.Global;
-
 public class GaanaUtilities {
-	// public static void main(String[] args) {
-	// final String value = "20596607";
-	// final String key = "1594fdf1a2d607590747d5cad924fcac";
-	// String codedValue = getBase64(value);
-	// String st = HmacUtils.hmacMd5Hex(key, codedValue);
-	// System.out.println(st);
-	// }
+//	 public static void main(String[] args) {
+//	 final String value = "20596607";
+//	 final String key = "1594fdf1a2d607590747d5cad924fcac";
+//	 String codedValue = getBase64(value);
+//	 String st = HmacUtils.hmacMd5Hex(key, codedValue);
+//	 System.out.println(st);
+//		 System.out.println(decodeDownloadURL("aHR0cDovL3N0cmVhbXMuZ2FhbmEuY29tL21wNC8xMjgvMzgvMTAyMzgvNDY2MTIubXA0P3N0cmVhbWF1dGg9MTQ4MTEzMzM4NV8yOWRlZmQxNWYxNGU3NTliZmRhMTFmYTE4MjNhODc0OA"));
+//	 }
 
 	// private static final char[] n = new char[] { '0', '1', '2', '3', '4',
 	// '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd',
@@ -118,54 +112,60 @@ public class GaanaUtilities {
 	}
 
 	public static String decodeDownloadURL(String data) {
-		try {
-			byte[] c = decodeDownloadURL(Global.URL_DECODE_KEY, data);
-			if (c != null) {
-				String str2 = new String(c);
-				if (str2.startsWith("http")) {
-					return str2.trim();
-				}
-				System.out.println("StreamingFailure" + "Server - URL decoding failure");
-			}
-		} catch (Exception e) {
-			System.out.println("StreamingFailure" + "Server - URL decoding failure");
-			e.printStackTrace();
-		}
-		return null;
+		byte[] url = Base64.getDecoder().decode(data);
+		return new String(url);
 	}
-
-	private static byte[] decodeDownloadURL(String urlDecodeKey, String data) throws Exception {
-		SecretKeySpec b = new SecretKeySpec(urlDecodeKey.getBytes(), "AES");
-		try {
-			Cipher c = Cipher.getInstance("AES/ECB/NoPadding");
-			if (data == null || data.length() == 0) {
-				throw new Exception("Empty string");
-			}
-			try {
-				c.init(2, b);
-				return c.doFinal(a(data));
-			} catch (Exception e) {
-				throw new Exception("[decrypt] " + e.getMessage());
-			}
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (NoSuchPaddingException e2) {
-			e2.printStackTrace();
-		}
-		return null;
-	}
-
-	public static byte[] a(String str) {
-		byte[] bArr = null;
-		if (str != null && str.length() >= 2) {
-			int length = str.length() / 2;
-			bArr = new byte[length];
-			for (int i = 0; i < length; i++) {
-				bArr[i] = (byte) Integer.parseInt(str.substring(i * 2, (i * 2) + 2), 16);
-			}
-		}
-		return bArr;
-	}
+	
+//	public static String decodeDownloadURL(String data) {
+//		try {
+//			byte[] c = decodeDownloadURL(Global.URL_DECODE_KEY, data);
+//			if (c != null) {
+//				String str2 = new String(c);
+//				if (str2.startsWith("http")) {
+//					return str2.trim();
+//				}
+//				System.out.println("StreamingFailure" + "Server - URL decoding failure");
+//			}
+//		} catch (Exception e) {
+//			System.out.println("StreamingFailure" + "Server - URL decoding failure");
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
+//
+//	private static byte[] decodeDownloadURL(String urlDecodeKey, String data) throws Exception {
+//		SecretKeySpec b = new SecretKeySpec(urlDecodeKey.getBytes(), "AES");
+//		try {
+//			Cipher c = Cipher.getInstance("AES/ECB/NoPadding");
+//			if (data == null || data.length() == 0) {
+//				throw new Exception("Empty string");
+//			}
+//			try {
+//				c.init(2, b);
+//				return c.doFinal(a(data));
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				throw new Exception("[decrypt] " + e.getMessage());
+//			}
+//		} catch (NoSuchAlgorithmException e) {
+//			e.printStackTrace();
+//		} catch (NoSuchPaddingException e2) {
+//			e2.printStackTrace();
+//		}
+//		return null;
+//	}
+//
+//	public static byte[] a(String str) {
+//		byte[] bArr = null;
+//		if (str != null && str.length() >= 2) {
+//			int length = str.length() / 2;
+//			bArr = new byte[length];
+//			for (int i = 0; i < length; i++) {
+//				bArr[i] = (byte) Integer.parseInt(str.substring(i * 2, (i * 2) + 2), 16);
+//			}
+//		}
+//		return bArr;
+//	}
 
 	public static String getBase64(String str) {
 		return Base64.getEncoder().encodeToString(str.getBytes()).trim();

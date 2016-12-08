@@ -45,7 +45,7 @@ public class GaanaSearch {
 			return;
 		}
 
-		totalResult = (int) userData.get("count");
+		totalResult = userData.getAsNumber("count").intValue();
 		logger.debug("totalResult of Initial Request::{}", totalResult);
 		SearchResults.updateSize(totalResult);
 
