@@ -40,10 +40,11 @@ public class DownloadLinkHelper {
 					downloadLinkRecord[2] = track_id;
 					downloadLinkRecord[3] = downloadURL;
 				}
+				if (null != downloadLinkRecord) {
+					downloadLinks.add(downloadLinkRecord);
+				}				
 			}
-			if (null != downloadLinkRecord) {
-				downloadLinks.add(downloadLinkRecord);
-			}
+			
 		}
 	}
 
