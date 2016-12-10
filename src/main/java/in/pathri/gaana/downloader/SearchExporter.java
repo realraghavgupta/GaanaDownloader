@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import in.pathri.gaana.constants.ExportType;
 import in.pathri.gaana.constants.Global;
-import in.pathri.gaana.dao.SearchResults;
+import in.pathri.gaana.dao.SearchResultsDAO;
 import in.pathri.gaana.utilities.CSVExporterImport;
 import in.pathri.gaana.utilities.ExporterImportInterface;
 import net.minidev.json.JSONArray;
@@ -28,7 +28,7 @@ public class SearchExporter {
 		}
 		exporter.initExporter(filePath);
 		exporter.addColumnHeader(Global.EXPORT_COLUMNS);
-		JSONArray results = SearchResults.getResultArray();
+		JSONArray results = SearchResultsDAO.getResultArray();
 		for (Object jsonObject : results) {
 			record = (JSONObject) jsonObject;
 			values = new String[3];

@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import in.pathri.gaana.constants.DownloadParam;
 import in.pathri.gaana.constants.Global;
+import in.pathri.gaana.dao.DownloadLinksDAO;
 import in.pathri.gaana.utilities.CSVExporterImport;
 import in.pathri.gaana.utilities.DownloadParamHelper;
 import in.pathri.gaana.utilities.GaanaUtilities;
@@ -26,6 +27,8 @@ public class DownloadLinkHelper {
 		if (null == importedResults) {
 			importResults();
 		}
+		DownloadLinksDAO.resetData();
+		DownloadLinksDAO.updateSize(importedResults.size() * 4);
 		for (String[] record : importedResults) {
 			String album_id = record[0];
 			String[] trackIds = record[1].split(",");
@@ -42,10 +45,11 @@ public class DownloadLinkHelper {
 				}
 				if (null != downloadLinkRecord) {
 					downloadLinks.add(downloadLinkRecord);
+					DownloadLinksDAO.addLink(downloadURL);
 				}				
 			}
 			
-		}
+		}		
 	}
 
 	private static String getTrackDownloadLinks(String track_id) {
@@ -111,5 +115,10 @@ public class DownloadLinkHelper {
 				importedResults.add(tempRecord);
 			}
 		} while (null != tempRecord);
+	}
+
+	public static void importDownloadLinks() {
+		// TODO Auto-generated method stub
+		
 	}
 }

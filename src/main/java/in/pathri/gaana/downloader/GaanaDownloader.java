@@ -7,8 +7,9 @@ import in.pathri.gaana.constants.ExportType;
 import in.pathri.gaana.constants.Global;
 import in.pathri.gaana.constants.Language;
 import in.pathri.gaana.constants.SearchType;
+import in.pathri.gaana.constants.UsageOptions;
 import in.pathri.gaana.utilities.MiscUtilities;
-import in.pathri.gaana.utilities.UserPromts;
+import in.pathri.gaana.utilities.UserPrompts;
 
 public class GaanaDownloader {
 	static final Logger logger = LogManager.getLogger();
@@ -19,7 +20,7 @@ public class GaanaDownloader {
 		try {
 			bulkDownload();
 			logger.traceExit();
-			UserPromts.doExit();
+			UserPrompts.doExit();
 		} catch (Exception e) {
 			logger.catching(e);
 		}
@@ -40,32 +41,52 @@ public class GaanaDownloader {
 		 * update triggerDownload //exit if no selection convertDownloaded //
 		 * generateLog //Generate log exit //close excel handles if any
 		 */
-
+		UserPrompts.greetAndInfo();
 		if (UserLogin.doLogin()) {
 			logger.info("Login Successfull");
-			boolean doNewSearch = UserPromts.doNewSearch();
-			if (doNewSearch) {
+			UsageOptions usageOption = UserPrompts.doNewSearch();
+			
+			switch (usageOption) {
+			case NEW_SEARCH:
 				logger.info("Doing a new search");
-				Language language = UserPromts.getSearchLanguage();
-				SearchType searchType = UserPromts.getSearchType();
+				Language language = UserPrompts.getSearchLanguage();
+				SearchType searchType = UserPrompts.getSearchType();
 				GaanaSearch.doSearch(searchType, language);
 				SearchExporter.exportSearchResults(ExportType.CSV, Global.SEARCH_RESULTS_FILE_NAME);
-				boolean waitForUserSelection = UserPromts.waitForUserSelection();
+				boolean waitForUserSelection = UserPrompts.waitForUserSelection();
 				if (!waitForUserSelection) {
 					logger.traceExit();
-					UserPromts.doExit();
+					UserPrompts.doExit();
 				}
-				MiscUtilities.openSearchResult();
-			}
-			boolean hasUpdatedResultsSheet = UserPromts.hasUpdatedResultsSheet();
-			if (!hasUpdatedResultsSheet) {
+				MiscUtilities.openSearchResult();				
+		
+			case GENERATE_DOWNLOAD_LINKS:				
+				boolean hasUpdatedResultsSheet = UserPrompts.hasUpdatedResultsSheet();
+				if (!hasUpdatedResultsSheet) {
+					logger.traceExit();
+					UserPrompts.pleaseUpdateResultsSheet();
+				}
+				logger.info("Generating Download links for the Selected Items");
+				DownloadLinkHelper.generateDownloadLinks();
+				DownloadLinkHelper.exportDownloadLinks();
 				logger.traceExit();
-				UserPromts.pleaseUpdateResultsSheet();
+				boolean externalDownload = UserPrompts.linksGenerated();
+				if(externalDownload){
+					logger.traceExit();
+					UserPrompts.doExit();					
+				}
+				
+			case DOWNLOAD_FROM_GENERATED_LINKS:
+				logger.info("Starting Download for the Generated Links");				
+				break;
+				
+			case COVERT_DOWNLOADED_SONGS:
+				
+				break;
+				
+			default:
+				logger.traceExit("Unhandled UsageOption::{}" + usageOption.toString());
 			}
-			DownloadLinkHelper.generateDownloadLinks();
-			DownloadLinkHelper.exportDownloadLinks();
-			logger.traceExit();
-			UserPromts.linksGenerated();
 		}
 		logger.traceExit();
 	}

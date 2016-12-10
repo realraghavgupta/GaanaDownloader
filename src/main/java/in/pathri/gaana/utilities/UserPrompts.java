@@ -7,17 +7,22 @@ import org.apache.logging.log4j.Logger;
 
 import in.pathri.gaana.constants.Global;
 import in.pathri.gaana.constants.Language;
-import in.pathri.gaana.constants.NewSearchPromt;
+import in.pathri.gaana.constants.UsageOptions;
 import in.pathri.gaana.constants.SearchType;
 import in.pathri.gaana.dao.User;
 import in.pathri.gaana.downloader.DownloadLinkHelper;
 
-public class UserPromts {
+public class UserPrompts {
 	static final Logger logger = LogManager.getLogger();
 	private static Scanner input;
 
 	static {
 		input = new Scanner(System.in);
+	}
+	
+	public static void greetAndInfo(){
+		System.out.println(Global.GREET);
+		System.out.println(Global.PROCESS_FLOW);
 	}
 
 	public static User promptForCred() {
@@ -35,24 +40,23 @@ public class UserPromts {
 		return new User(userName, password);
 	}
 
-	public static boolean doNewSearch() {
-		String option = "";
-		System.out.println(Global.DO_NEW_SEARCH_PROMPT);
-		printOptionNumber(NewSearchPromt.NEW_SEARCH.getOption());
-		System.out.println(NewSearchPromt.NEW_SEARCH.getValue());
-		printOptionNumber(NewSearchPromt.DOWNLOAD.getOption());
-		System.out.println(NewSearchPromt.DOWNLOAD.getValue());
-		while ((NewSearchPromt.NEW_SEARCH.getOption() != MiscUtilities.parseInt(option))
-				&& (NewSearchPromt.DOWNLOAD.getOption() != MiscUtilities.parseInt(option))) {
+	public static UsageOptions doNewSearch() {
+		String userResponse = "";
+		UsageOptions response = null;
+		System.out.println(Global.USAGE_OPTION_PROMPT);
+
+		for (UsageOptions v : UsageOptions.values()) {
+			printOptionNumber(v.getOption());
+			System.out.println(v.getValue());
+		}
+
+		while (null == response) {
 			System.out.println(Global.OPTION_PROMT);
-			option = input.nextLine();
-			logger.info("selected option:{}", option);
+			userResponse = input.nextLine();
+			logger.info("selected option:{}", userResponse);
+			response = UsageOptions.getEnum(MiscUtilities.parseInt(userResponse));
 		}
-		NewSearchPromt response = NewSearchPromt.getEnum(option);
-		if (response == NewSearchPromt.NEW_SEARCH) {
-			return true;
-		}
-		return false;
+		return response;
 	}
 
 	public static void promptWrongCred(String message) {
@@ -119,9 +123,8 @@ public class UserPromts {
 		doExit();
 	}
 
-	public static void linksGenerated() {
-		System.out.println(Global.LINKS_GENERATED_PROMPT);
-		doExit();
+	public static boolean linksGenerated() {
+		return yesNoPrompt(Global.LINKS_GENERATED_PROMPT);
 	}
 
 	private static boolean yesNoPrompt(String prompt) {
@@ -141,5 +144,10 @@ public class UserPromts {
 	private static void printOptionNumber(int option) {
 		String toPrint = "[" + option + "]";
 		System.out.print(toPrint);
+	}
+
+	public static void fatalError() {
+		// TODO Auto-generated method stub
+		
 	}
 }

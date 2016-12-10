@@ -2,7 +2,7 @@ package in.pathri.gaana.dao;
 
 import net.minidev.json.JSONArray;
 
-public class SearchResults {
+public class SearchResultsDAO {
 	private static JSONArray searchResultsArray;
 
 	public static void resetResults() {

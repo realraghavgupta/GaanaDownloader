@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 import in.pathri.gaana.constants.Global;
 import in.pathri.gaana.constants.Language;
 import in.pathri.gaana.constants.SearchType;
-import in.pathri.gaana.dao.SearchResults;
+import in.pathri.gaana.dao.SearchResultsDAO;
 import in.pathri.gaana.utilities.HTTPHelper;
 import in.pathri.gaana.utilities.SearchParamHelper;
 import net.minidev.json.JSONArray;
@@ -29,7 +29,7 @@ public class GaanaSearch {
 		JSONObject userData;
 		JSONArray tempSearchResults;
 
-		SearchResults.resetResults();
+		SearchResultsDAO.resetResults();
 
 		Map<String, String> params = getSearchParams(searchType, language);
 		if (params.isEmpty()) {
@@ -47,13 +47,13 @@ public class GaanaSearch {
 
 		totalResult = userData.getAsNumber("count").intValue();
 		logger.debug("totalResult of Initial Request::{}", totalResult);
-		SearchResults.updateSize(totalResult);
+		SearchResultsDAO.updateSize(totalResult);
 
 		tempSearchResults = (JSONArray) userData.get("album");
 		logger.debug("tempSearchResult::{}", tempSearchResults);
 		logger.debug("tempSearchResultSize::{}", tempSearchResults.size());
-		SearchResults.appendResult(tempSearchResults);
-		logger.debug("searchResultsArray Size:{}", SearchResults.getSize());
+		SearchResultsDAO.appendResult(tempSearchResults);
+		logger.debug("searchResultsArray Size:{}", SearchResultsDAO.getSize());
 		searchCount = tempSearchResults.size();
 		start = start + searchCount;
 		logger.debug("Start count:{}", start);
@@ -64,11 +64,11 @@ public class GaanaSearch {
 				return;
 			}
 			tempSearchResults = (JSONArray) userData.get("album");
-			SearchResults.appendResult(tempSearchResults);
+			SearchResultsDAO.appendResult(tempSearchResults);
 			searchCount = tempSearchResults.size();
 			start = start + searchCount;
 		}
-		logger.debug("Search Result::{}", SearchResults.getAsString());
+		logger.debug("Search Result::{}", SearchResultsDAO.getAsString());
 		logger.traceExit();
 	}
 

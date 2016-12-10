@@ -12,7 +12,7 @@ import in.pathri.gaana.utilities.DownloadParamHelper;
 import in.pathri.gaana.utilities.HTTPHelper;
 import in.pathri.gaana.utilities.MiscUtilities;
 import in.pathri.gaana.utilities.PropertyHelper;
-import in.pathri.gaana.utilities.UserPromts;
+import in.pathri.gaana.utilities.UserPrompts;
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
 
@@ -47,7 +47,7 @@ public class UserLogin {
 				} else {
 					errorMessage = Global.GENERIC_LOGIN_ERROR;
 				}
-				UserPromts.promptWrongCred(errorMessage);
+				UserPrompts.promptWrongCred(errorMessage);
 			}
 		} catch (Exception e) {
 			logger.catching(e);
@@ -58,14 +58,14 @@ public class UserLogin {
 
 	public static User getUser() {
 		if (null == user || user.isEmpty()) {
-			return UserPromts.promptForCred();
+			return UserPrompts.promptForCred();
 		}
 		return user;
 	}
 
 	public static boolean doLogin() {
 		if (null == user) {
-			user = UserPromts.promptForCred();
+			user = UserPrompts.promptForCred();
 		}
 		if (null != user && !user.hasToken()) {
 			String token = doLogin(user);
