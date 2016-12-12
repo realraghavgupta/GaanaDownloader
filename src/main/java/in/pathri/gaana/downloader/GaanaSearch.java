@@ -10,6 +10,7 @@ import in.pathri.gaana.constants.Language;
 import in.pathri.gaana.constants.SearchType;
 import in.pathri.gaana.dao.SearchResultsDAO;
 import in.pathri.gaana.utilities.HTTPHelper;
+import in.pathri.gaana.utilities.MiscUtilities;
 import in.pathri.gaana.utilities.SearchParamHelper;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
@@ -45,7 +46,7 @@ public class GaanaSearch {
 			return;
 		}
 
-		totalResult = userData.getAsNumber("count").intValue();
+		totalResult = MiscUtilities.parseInt(userData.getAsString("count"));
 		logger.debug("totalResult of Initial Request::{}", totalResult);
 		SearchResultsDAO.updateSize(totalResult);
 

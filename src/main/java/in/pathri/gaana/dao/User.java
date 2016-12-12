@@ -4,6 +4,7 @@ public class User implements java.io.Serializable {
 	private String userName;
 	private String password;
 	private String token;
+	private boolean doAlbumSplit = true;
 
 	public User(String userName, String password) {
 		this.userName = userName;

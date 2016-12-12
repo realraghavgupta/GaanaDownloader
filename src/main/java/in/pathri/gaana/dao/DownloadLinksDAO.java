@@ -1,31 +1,26 @@
 package in.pathri.gaana.dao;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DownloadLinksDAO {
-private static ArrayList<String> downloadLinks;
+private static Map<String, String> downloadLinks;
 
 public static void resetData(){
-	downloadLinks = new ArrayList<String>();
+	downloadLinks = new HashMap<String, String>();
 }
 
-public static void updateSize(int capacity){
-	downloadLinks.ensureCapacity(capacity);
-}
-
-
-public static List<String> getDownloadLinks() {
+public static Map<String, String> getDownloadLinks() {
 	if(null == downloadLinks){
 		resetData();
 	}
 	return downloadLinks;
 }
 
-public static void addLink(String downloadURL) {
+public static void addLink(String file_id, String downloadURL) {
 	if(null == downloadLinks){
 		resetData();
 	}
-	downloadLinks.add(downloadURL);
+	downloadLinks.put(file_id, downloadURL);
 }
 }

@@ -11,9 +11,10 @@ public class Global {
 	public static final String[] EXPORT_COLUMNS = "Album_ID,Track_IDs,Name,Download_YesNo".split(",");
 	public static final String SEARCH_RESULTS_FILE_NAME = "SearchResult.csv";
 
-	public static final String DOWNLOAD_LINK_FILE_NAME = "DownloadLinksDAO.csv";
+	public static final String DOWNLOAD_LINK_FILE_NAME = "DownloadLinks.csv";
 	public static final String[] DOWNLOAD_LINK_EXPORT_HEADERS = "Album_ID,Name,Track_ID,Download_Link".split(",");
 
+	public static final String BREAK = "************************************************";
 	public static final String GREET = "Hello! Welcome to Gaana Downloader!";
 	public static final String USAGE_OPTION_NEW_SEARCH = "Do a New Search";
 	public static final String USAGE_OPTION_NEW_SEARCH_HINT = "(Produces CSV file with list of Tracks/Albums)";
@@ -49,6 +50,8 @@ public class Global {
 	public static final String EXIT_PROMPT = "Please press Enter key to exit";
 
 	public static final String GENERIC_LOGIN_ERROR = "Unknown Login Error!";
+	public static final String NO_DOWNLOAD_LINKS = "No download links found in " + DOWNLOAD_LINK_FILE_NAME;
+	public static final String UNKNOWN_ERROR = "Some Unknown Error Occured! Please re-run the program.";
 
 
 }

@@ -16,7 +16,7 @@ public class GaanaDownloader {
 	public native String[] stringFromMethod();
 
 	public static void main(String[] args) {
-		logger.traceEntry("Parameters::{}", args);
+		logger.traceEntry("Parameters::{}", String.join(";", args));
 		try {
 			bulkDownload();
 			logger.traceExit();
@@ -29,18 +29,6 @@ public class GaanaDownloader {
 
 	public static void bulkDownload() {
 		logger.traceEntry();
-		// TODO: Implement following
-		/*
-		 * getGaanaConst //Load .so File getUserData //prompt if user.dat
-		 * empty.serialised cred storage. User data DAO. Includes 'should split
-		 * into Album Folders' gaanaLogin if(doNewSearch) //New search or
-		 * download based on previous selection gaanaSearch //Store in Search
-		 * DAO generateSearchResults //Excel in Enum if(shouldProceed) // prompt
-		 * whether selection will be made now (wait for input) or later (exit
-		 * program now) waitForDownloadSelection //prompt for key press on excel
-		 * update triggerDownload //exit if no selection convertDownloaded //
-		 * generateLog //Generate log exit //close excel handles if any
-		 */
 		UserPrompts.greetAndInfo();
 		if (UserLogin.doLogin()) {
 			logger.info("Login Successfull");
@@ -67,8 +55,8 @@ public class GaanaDownloader {
 					UserPrompts.pleaseUpdateResultsSheet();
 				}
 				logger.info("Generating Download links for the Selected Items");
-				DownloadLinkHelper.generateDownloadLinks();
-				DownloadLinkHelper.exportDownloadLinks();
+				DownloadLinkGenerator.doGenerate();
+				DownloadLinkGenerator.exportDownloadLinks();
 				logger.traceExit();
 				boolean externalDownload = UserPrompts.linksGenerated();
 				if(externalDownload){
@@ -77,7 +65,9 @@ public class GaanaDownloader {
 				}
 				
 			case DOWNLOAD_FROM_GENERATED_LINKS:
-				logger.info("Starting Download for the Generated Links");				
+				logger.info("Starting Download for the Generated Links");
+				DownloadHelper.doDownload();
+				logger.info("Downloads Complete");
 				break;
 				
 			case COVERT_DOWNLOADED_SONGS:

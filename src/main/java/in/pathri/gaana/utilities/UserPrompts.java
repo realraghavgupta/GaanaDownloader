@@ -10,7 +10,7 @@ import in.pathri.gaana.constants.Language;
 import in.pathri.gaana.constants.UsageOptions;
 import in.pathri.gaana.constants.SearchType;
 import in.pathri.gaana.dao.User;
-import in.pathri.gaana.downloader.DownloadLinkHelper;
+import in.pathri.gaana.downloader.DownloadLinkGenerator;
 
 public class UserPrompts {
 	static final Logger logger = LogManager.getLogger();
@@ -21,8 +21,12 @@ public class UserPrompts {
 	}
 	
 	public static void greetAndInfo(){
+		printBreak();
 		System.out.println(Global.GREET);
+		printBreak();
 		System.out.println(Global.PROCESS_FLOW);
+		printBreak();
+		System.out.println("");
 	}
 
 	public static User promptForCred() {
@@ -113,7 +117,7 @@ public class UserPrompts {
 
 	public static boolean hasUpdatedResultsSheet() {
 		if (yesNoPrompt(Global.HAS_UPDATED_RESULTS)) {
-			return DownloadLinkHelper.checkIfResultsUpdated();
+			return DownloadLinkGenerator.checkIfResultsUpdated();
 		}
 		return false;
 	}
@@ -146,8 +150,18 @@ public class UserPrompts {
 		System.out.print(toPrint);
 	}
 
-	public static void fatalError() {
-		// TODO Auto-generated method stub
+	public static void unknownError() {
+		System.out.println(Global.UNKNOWN_ERROR);
+		doExit();
+		
+	}
+	
+	private static void printBreak(){
+		System.out.println(Global.BREAK);
+	}
+
+	public static void noDownloadLinks() {
+		System.out.println(Global.NO_DOWNLOAD_LINKS);
 		
 	}
 }
