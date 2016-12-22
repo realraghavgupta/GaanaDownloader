@@ -74,6 +74,7 @@ public class CSVExporterImport implements ExporterImportInterface {
 
 	@Override
 	public void initImporter(String filePath) {
+		logger.entry(filePath);
 		try {
 			reader = new CSVReader(new FileReader(filePath));
 		} catch (FileNotFoundException e) {
@@ -84,7 +85,9 @@ public class CSVExporterImport implements ExporterImportInterface {
 	@Override
 	public String[] getColumnHeader() {
 		try {
-			return reader.readNext();
+			String[] ret = reader.readNext();
+			logger.traceExit(String.join(";", ret));
+			return ret;
 		} catch (IOException e) {
 			logger.catching(e);
 		}

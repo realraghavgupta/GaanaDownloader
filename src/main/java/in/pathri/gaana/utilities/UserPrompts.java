@@ -1,5 +1,6 @@
 package in.pathri.gaana.utilities;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.apache.logging.log4j.LogManager;
@@ -162,6 +163,12 @@ public class UserPrompts {
 
 	public static void noDownloadLinks() {
 		System.out.println(Global.NO_DOWNLOAD_LINKS);
+		
+	}
+
+	public static void promtDownloadFailure(List<String> failureList) {
+		System.out.println(Global.DOWNLOAD_FAILURE + String.join(";", failureList));
+		
 		
 	}
 }

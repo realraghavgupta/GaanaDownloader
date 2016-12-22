@@ -117,6 +117,7 @@ public class DownloadLinkGenerator {
 	}
 
 	public static void importDownloadLinks() {
+		logger.traceEntry();
 		String[] tempRecord = new String[4];
 		CSVExporterImport importer = new CSVExporterImport();
 		importer.initImporter(Global.DOWNLOAD_LINK_FILE_NAME);

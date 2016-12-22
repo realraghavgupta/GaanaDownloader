@@ -8,6 +8,7 @@ import in.pathri.gaana.constants.Global;
 import in.pathri.gaana.constants.Language;
 import in.pathri.gaana.constants.SearchType;
 import in.pathri.gaana.constants.UsageOptions;
+import in.pathri.gaana.extractor.MainExtractor;
 import in.pathri.gaana.utilities.MiscUtilities;
 import in.pathri.gaana.utilities.UserPrompts;
 
@@ -68,10 +69,11 @@ public class GaanaDownloader {
 				logger.info("Starting Download for the Generated Links");
 				DownloadHelper.doDownload();
 				logger.info("Downloads Complete");
-				break;
 				
 			case COVERT_DOWNLOADED_SONGS:
-				
+				logger.info("Starting Conversion");
+				String srcDir = Global.DOWNLOAD_FOLDER_NAME;				
+				MainExtractor.extract(srcDir, true);
 				break;
 				
 			default:

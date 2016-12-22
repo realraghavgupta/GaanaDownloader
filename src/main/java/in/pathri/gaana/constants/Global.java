@@ -52,6 +52,8 @@ public class Global {
 	public static final String GENERIC_LOGIN_ERROR = "Unknown Login Error!";
 	public static final String NO_DOWNLOAD_LINKS = "No download links found in " + DOWNLOAD_LINK_FILE_NAME;
 	public static final String UNKNOWN_ERROR = "Some Unknown Error Occured! Please re-run the program.";
+	public static final String DOWNLOAD_FAILURE = "Following Tracks were not downloaded due to error::";
+	public static final String DOWNLOAD_FOLDER_NAME = "Downloaded_Songs";
 
 
 }
