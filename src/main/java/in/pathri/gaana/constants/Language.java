@@ -1,7 +1,17 @@
 package in.pathri.gaana.constants;
 
 public enum Language {
-	TAMIL("tamil", 1);
+	HINDI("hindi", 1),
+	ENGLISH("english", 2),
+	TAMIL("tamil", 3),
+	TELUGU("telugu", 4),
+	PUNJABI("punjabi", 5),
+	MARATHI("marathi", 6),
+	BENGALI("bengali", 7),
+	BHOJPURI("bhojpuri", 8),
+	KANNADA("kannada", 9),
+	MALAYALAM("malayalam", 10),
+	OTHERS("others", 11);
 	
 	private String value;
 	private int option;

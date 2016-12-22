@@ -47,12 +47,16 @@
 			<name>bintray</name>
 			<url>http://jcenter.bintray.com</url>
 		</repository>
+		<repository>
+			<id>jaudiotagger-repository</id>
+			<url>https://dl.bintray.com/pathrik/PathriK</url>
+		</repository>		
 	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>in.pathri.gaana</groupId>
 			<artifactId>GaanaExtractor</artifactId>
-			<version>2.1-SNAPSHOT</version>
+			<version>2.1</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
 		<dependency>

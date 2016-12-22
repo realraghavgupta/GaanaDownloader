@@ -23,8 +23,8 @@ public class GaanaSearch {
 	public static void doSearch(SearchType searchType, Language language) {
 		logger.entry(searchType, language);
 		int totalResult = 0;
-		int start = 5990;
-//		int start = 0;
+//		int start = 5990;
+		int start = 0;
 		int count = 99;
 		int searchCount = 0;
 		JSONObject userData;

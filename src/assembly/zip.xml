@@ -14,5 +14,9 @@
             <source>src/main/resources/external/GaanaDownloader.bat</source>
             <outputDirectory>/</outputDirectory>
         </file>      
+        <file>
+            <source>src/main/resources/external/GaanaDownloader.sh</source>
+            <outputDirectory>/</outputDirectory>
+        </file>      
     </files>
 </assembly>
