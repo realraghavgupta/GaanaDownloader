@@ -14,6 +14,8 @@ public class Global {
 	public static final String DOWNLOAD_LINK_FILE_NAME = "DownloadLinks.csv";
 	public static final String[] DOWNLOAD_LINK_EXPORT_HEADERS = "Album_ID,Name,Track_ID,Download_Link".split(",");
 
+	public static final String DOWNLOAD_FOLDER_NAME = "Downloaded_Songs";
+	
 	public static final String BREAK = "************************************************";
 	public static final String GREET = "Hello! Welcome to Gaana Downloader!";
 	public static final String USAGE_OPTION_NEW_SEARCH = "Do a New Search";
@@ -53,7 +55,7 @@ public class Global {
 	public static final String NO_DOWNLOAD_LINKS = "No download links found in " + DOWNLOAD_LINK_FILE_NAME;
 	public static final String UNKNOWN_ERROR = "Some Unknown Error Occured! Please re-run the program.";
 	public static final String DOWNLOAD_FAILURE = "Following Tracks were not downloaded due to error::";
-	public static final String DOWNLOAD_FOLDER_NAME = "Downloaded_Songs";
+	
 
 
 }
