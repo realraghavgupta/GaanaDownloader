@@ -1,1 +1,0 @@
-java -jar %~dp0GaanaDownloader.jar %*
