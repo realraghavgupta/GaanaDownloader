@@ -28,7 +28,13 @@ Also there is an option to organize the songs into folders named under their Alb
 	
 ## Downloads:
 
+Releases:
+
 https://github.com/PathriK/GaanaDownloader/releases
+
+Latest Snapshot Versions:
+
+v1.1: https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-1.1-SNAPSHOT.zip
 
 ## Contact:
 Gmail: pathrikumark@gmail.com
