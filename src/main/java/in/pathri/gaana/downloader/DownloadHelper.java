@@ -1,5 +1,6 @@
 package in.pathri.gaana.downloader;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +66,7 @@ public class DownloadHelper {
 	
 
 	private static String getDownloadPath(String track_id) {
-		return Global.DOWNLOAD_FOLDER_NAME + "\\" + track_id;
+		return Global.DOWNLOAD_FOLDER_NAME + File.separator + track_id;
 	}
 
 	public static void addFailure(String track_id) {
