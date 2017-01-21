@@ -1,4 +1,6 @@
-package in.pathri.gaana.constants;
+package in.pathri.gaana.enums;
+
+import in.pathri.gaana.constants.Global;
 
 public enum UsageOptions {
 	NEW_SEARCH(Global.USAGE_OPTION_NEW_SEARCH, 1), 

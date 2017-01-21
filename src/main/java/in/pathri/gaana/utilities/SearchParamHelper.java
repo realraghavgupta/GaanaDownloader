@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import in.pathri.gaana.constants.Language;
+import in.pathri.gaana.enums.Language;
 
 public class SearchParamHelper {
 	static final Logger logger = LogManager.getLogger();

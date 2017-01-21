@@ -1,4 +1,4 @@
-package in.pathri.gaana.constants;
+package in.pathri.gaana.enums;
 
 public enum Language {
 	HINDI("hindi", 1),

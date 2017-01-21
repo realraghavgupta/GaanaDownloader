@@ -6,12 +6,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import in.pathri.gaana.constants.Global;
-import in.pathri.gaana.constants.Language;
-import in.pathri.gaana.constants.SearchType;
 import in.pathri.gaana.dao.SearchResultsDAO;
+import in.pathri.gaana.enums.Language;
+import in.pathri.gaana.enums.SearchType;
 import in.pathri.gaana.utilities.HTTPHelper;
 import in.pathri.gaana.utilities.MiscUtilities;
 import in.pathri.gaana.utilities.SearchParamHelper;
+import in.pathri.gaana.utilities.UserPrompts;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
@@ -23,7 +24,7 @@ public class GaanaSearch {
 	public static void doSearch(SearchType searchType, Language language) {
 		logger.entry(searchType, language);
 		int totalResult = 0;
-//		int start = 5990;
+//		int start = 4429; //tamil
 		int start = 0;
 		int count = 99;
 		int searchCount = 0;
@@ -51,6 +52,11 @@ public class GaanaSearch {
 		SearchResultsDAO.updateSize(totalResult);
 
 		tempSearchResults = (JSONArray) userData.get("album");
+		if(null == tempSearchResults){
+			logger.debug("sendSearchReq resulted empty userData album");
+			UserPrompts.noResultsFound();
+			return;
+		}
 		logger.debug("tempSearchResult::{}", tempSearchResults);
 		logger.debug("tempSearchResultSize::{}", tempSearchResults.size());
 		SearchResultsDAO.appendResult(tempSearchResults);

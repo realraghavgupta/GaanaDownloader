@@ -51,7 +51,7 @@ public class DownloadParamHelper {
 			params.put("hashcode", hashCode);
 		params.put("connection_type", connectionType.getName());
 		params.put("token", token);
-		params.put("quality", quality.getName());
+		params.put("quality", quality.getValue());
 		params.put("delivery_type", deliveryType.getName());
 	}
 

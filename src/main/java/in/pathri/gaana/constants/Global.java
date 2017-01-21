@@ -42,6 +42,8 @@ public class Global {
 	public static final String LANGUAGE_PROMPT = "Please select the language:";
 	public static final String SEARCHTYPE_PROMPT = "Please select a type of Search";
 
+	public static final String DOWNLOAD_QUALITY_PROMPT = "Please Select a Download Quality";
+	
 	public static final String QUIT_RESUME = "program will Quit and can be Resumed through a Re-Run";
 	
 	public static final String DO_WAIT_FOR_SELECTION = "Do you want the program to wait till you make your selection in Excel? (Yes or No). If No, " + QUIT_RESUME;
@@ -55,6 +57,8 @@ public class Global {
 	public static final String NO_DOWNLOAD_LINKS = "No download links found in " + DOWNLOAD_LINK_FILE_NAME;
 	public static final String UNKNOWN_ERROR = "Some Unknown Error Occured! Please re-run the program.";
 	public static final String DOWNLOAD_FAILURE = "Following Tracks were not downloaded due to error::";
+	public static final String NO_RESULTS_FOUND = "No search results found. Kindly re-run with different search criteria";
+	
 	
 
 

@@ -6,12 +6,14 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import in.pathri.gaana.constants.DownloadParam;
+import in.pathri.gaana.constants.DownloadParam.Quality;
 import in.pathri.gaana.constants.Global;
-import in.pathri.gaana.constants.Language;
-import in.pathri.gaana.constants.UsageOptions;
-import in.pathri.gaana.constants.SearchType;
 import in.pathri.gaana.dao.User;
 import in.pathri.gaana.downloader.DownloadLinkGenerator;
+import in.pathri.gaana.enums.Language;
+import in.pathri.gaana.enums.SearchType;
+import in.pathri.gaana.enums.UsageOptions;
 
 public class UserPrompts {
 	static final Logger logger = LogManager.getLogger();
@@ -105,7 +107,33 @@ public class UserPrompts {
 		}
 		return response;
 	}
+	
 
+	public static void getDownloadQuality() {
+		String userResponse = "";
+		Quality response = null;
+		System.out.println(Global.DOWNLOAD_QUALITY_PROMPT);
+
+		for (Quality v : Quality.values()) {
+			printOptionNumber(v.getOption());
+			System.out.println(v.getValue());
+		}
+
+		while (null == response) {
+			System.out.println(Global.OPTION_PROMT);
+			userResponse = input.nextLine();
+			logger.info("selected option:{}", userResponse);
+			response = Quality.getEnum(MiscUtilities.parseInt(userResponse));
+		}
+		
+		DownloadParam.setQuality(response);		
+	}
+
+	public static void noResultsFound() {
+		System.out.println(Global.NO_RESULTS_FOUND);
+		doExit();
+	}
+	
 	public static void doExit() {
 		System.out.println(Global.EXIT_PROMPT);
 		input.nextLine();
@@ -171,4 +199,6 @@ public class UserPrompts {
 		
 		
 	}
+
+
 }

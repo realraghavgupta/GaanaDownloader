@@ -53,7 +53,7 @@ public class DownloadLinkGenerator {
 
 	private static String getTrackDownloadLinks(String track_id) {
 		DownloadParamHelper downloadParamHelper = new DownloadParamHelper();
-		downloadParamHelper.initParams(DownloadParam.ConnectionType.WIFI, DownloadParam.Quality.HIGH,
+		downloadParamHelper.initParams(DownloadParam.ConnectionType.WIFI, DownloadParam.getQuality(),
 				DownloadParam.DeliveryType.DOWNLOAD);
 		downloadParamHelper.setTrackId(track_id);
 		Map<String, String> params = downloadParamHelper.getParams();

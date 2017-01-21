@@ -3,11 +3,11 @@ package in.pathri.gaana.downloader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import in.pathri.gaana.constants.ExportType;
 import in.pathri.gaana.constants.Global;
-import in.pathri.gaana.constants.Language;
-import in.pathri.gaana.constants.SearchType;
-import in.pathri.gaana.constants.UsageOptions;
+import in.pathri.gaana.enums.ExportType;
+import in.pathri.gaana.enums.Language;
+import in.pathri.gaana.enums.SearchType;
+import in.pathri.gaana.enums.UsageOptions;
 import in.pathri.gaana.extractor.MainExtractor;
 import in.pathri.gaana.utilities.MiscUtilities;
 import in.pathri.gaana.utilities.UserPrompts;
@@ -56,6 +56,7 @@ public class GaanaDownloader {
 					UserPrompts.pleaseUpdateResultsSheet();
 				}
 				logger.info("Generating Download links for the Selected Items");
+				UserPrompts.getDownloadQuality();
 				DownloadLinkGenerator.doGenerate();
 				DownloadLinkGenerator.exportDownloadLinks();
 				logger.traceExit();

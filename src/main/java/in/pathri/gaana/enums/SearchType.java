@@ -1,4 +1,4 @@
-package in.pathri.gaana.constants;
+package in.pathri.gaana.enums;
 
 public enum SearchType {
 	ALL_ALBUMS("All Albums", 1);
