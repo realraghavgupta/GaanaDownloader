@@ -34,7 +34,9 @@ https://github.com/PathriK/GaanaDownloader/releases
 
 Latest Snapshot Versions:
 
-v1.1: https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-1.1-SNAPSHOT.zip
+v1.2: 
+
+https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-1.2-SNAPSHOT.zip
 
 ## Contact:
 Gmail: pathrikumark@gmail.com
@@ -42,6 +44,12 @@ Gmail: pathrikumark@gmail.com
 Gitter: https://gitter.im/PathriK/GaanaDownloader
 
 ## CHANGELOG:
+
+v1.1(24 Jan 2017):
+- Fixed #4 : Works in Linux now
+- Fixed #5 : Users can now select the Song download quality
+- Fixed #6 : Now the tool can convert songs that has been downloaded using external download managers
+
 
 v1.0:
 - Initial Release
