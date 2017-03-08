@@ -40,8 +40,9 @@ public class GaanaDownloader {
 				logger.info("Doing a new search");
 				Language language = UserPrompts.getSearchLanguage();
 				SearchType searchType = UserPrompts.getSearchType();
+				SearchExporter.init(ExportType.CSV, Global.SEARCH_RESULTS_FILE_NAME);
 				GaanaSearch.doSearch(searchType, language);
-				SearchExporter.exportSearchResults(ExportType.CSV, Global.SEARCH_RESULTS_FILE_NAME);
+				SearchExporter.end();
 				boolean waitForUserSelection = UserPrompts.waitForUserSelection();
 				if (!waitForUserSelection) {
 					logger.traceExit();

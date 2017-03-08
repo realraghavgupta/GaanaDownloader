@@ -6,7 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import in.pathri.gaana.constants.Global;
-import in.pathri.gaana.dao.SearchResultsDAO;
+//import in.pathri.gaana.dao.SearchResultsDAO;
 import in.pathri.gaana.enums.Language;
 import in.pathri.gaana.enums.SearchType;
 import in.pathri.gaana.utilities.HTTPHelper;
@@ -31,7 +31,7 @@ public class GaanaSearch {
 		JSONObject userData;
 		JSONArray tempSearchResults;
 
-		SearchResultsDAO.resetResults();
+//		SearchResultsDAO.resetResults();
 
 		Map<String, String> params = getSearchParams(searchType, language);
 		if (params.isEmpty()) {
@@ -49,7 +49,7 @@ public class GaanaSearch {
 
 		totalResult = MiscUtilities.parseInt(userData.getAsString("count"));
 		logger.debug("totalResult of Initial Request::{}", totalResult);
-		SearchResultsDAO.updateSize(totalResult);
+//		SearchResultsDAO.updateSize(totalResult);
 
 		tempSearchResults = (JSONArray) userData.get("album");
 		if(null == tempSearchResults){
@@ -57,10 +57,11 @@ public class GaanaSearch {
 			UserPrompts.noResultsFound();
 			return;
 		}
-		logger.debug("tempSearchResult::{}", tempSearchResults);
+//		logger.debug("tempSearchResult::{}", tempSearchResults);
 		logger.debug("tempSearchResultSize::{}", tempSearchResults.size());
-		SearchResultsDAO.appendResult(tempSearchResults);
-		logger.debug("searchResultsArray Size:{}", SearchResultsDAO.getSize());
+//		SearchResultsDAO.appendResult(tempSearchResults);
+		SearchExporter.appendResults(tempSearchResults);
+//		logger.debug("searchResultsArray Size:{}", SearchResultsDAO.getSize());
 		searchCount = tempSearchResults.size();
 		start = start + searchCount;
 		logger.debug("Start count:{}", start);
@@ -71,11 +72,12 @@ public class GaanaSearch {
 				return;
 			}
 			tempSearchResults = (JSONArray) userData.get("album");
-			SearchResultsDAO.appendResult(tempSearchResults);
+//			SearchResultsDAO.appendResult(tempSearchResults);
+			SearchExporter.appendResults(tempSearchResults);
 			searchCount = tempSearchResults.size();
 			start = start + searchCount;
 		}
-		logger.debug("Search Result::{}", SearchResultsDAO.getAsString());
+//		logger.debug("Search Result::{}", SearchResultsDAO.getAsString());
 		logger.traceExit();
 	}
 
