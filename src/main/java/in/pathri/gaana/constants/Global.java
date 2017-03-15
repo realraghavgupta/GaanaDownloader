@@ -1,6 +1,8 @@
 package in.pathri.gaana.constants;
 
 public class Global {
+	public static final String APP_ID = "in.pathri.gaana.downloader";
+	
 	public static final String HASH_KEY = "1594fdf1a2d607590747d5cad924fcac";
 	public static final String URL_DECODE_KEY = "c1c6b8b2c1b1a1c7";
 

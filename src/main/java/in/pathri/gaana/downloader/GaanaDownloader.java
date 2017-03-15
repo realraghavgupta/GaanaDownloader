@@ -11,6 +11,9 @@ import in.pathri.gaana.enums.UsageOptions;
 import in.pathri.gaana.extractor.MainExtractor;
 import in.pathri.gaana.utilities.MiscUtilities;
 import in.pathri.gaana.utilities.UserPrompts;
+import it.sauronsoftware.junique.AlreadyLockedException;
+import it.sauronsoftware.junique.JUnique;
+import it.sauronsoftware.junique.MessageHandler;
 
 public class GaanaDownloader {
 	static final Logger logger = LogManager.getLogger();
@@ -18,6 +21,36 @@ public class GaanaDownloader {
 
 	public static void main(String[] args) {
 		logger.traceEntry("Parameters::{}", String.join(";", args));
+		boolean fromExtension = args.length > 0? Boolean.valueOf(args[0]):false;
+		appInit(fromExtension);	
+		
+		
+//		downloaderInit();
+	}
+	
+	private static void appInit(boolean fromExtension){
+		boolean isRunning = checkIfRunning();
+	}
+	
+	private static boolean checkIfRunning(){
+		try {
+			JUnique.acquireLock(Global.APP_ID, new MessageHandler(){
+				@Override
+				public String handle(String msg) {
+					//TODO: Recieve Message
+					//String retVal = myApp.recieveMessage(msg);
+					//return retVal;
+					return "";
+				}				
+			});
+			return false;
+		}catch (AlreadyLockedException e) {
+//			System.out.println("catching exception" + Thread.currentThread().getId());
+			return true;
+		}		
+	}
+	
+	private static void downloaderInit(){		
 		try {
 			bulkDownload();
 			logger.traceExit();
@@ -25,7 +58,7 @@ public class GaanaDownloader {
 		} catch (Exception e) {
 			logger.catching(e);
 		}
-		logger.traceExit();
+		logger.traceExit();		
 	}
 
 	public static void bulkDownload() {
