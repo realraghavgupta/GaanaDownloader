@@ -61,7 +61,12 @@ public class Global {
 	public static final String DOWNLOAD_FAILURE = "Following Tracks were not downloaded due to error::";
 	public static final String NO_RESULTS_FOUND = "No search results found. Kindly re-run with different search criteria";
 	
+	public static final String ERROR_FLAG = "errorFlag";
+	public static final String NATIVE_MESSAGE = "message";
 	
+	public static final String DOWNLOADER_NOT_RUNNING = "Downloader not running!";
+	public static final String INVALID_REQUEST = "Request not in correct format!";
+	public static final String DOWNLOAD_TRIGGERED = "Download process triggered!";
 
 
 }

@@ -10,6 +10,7 @@ import in.pathri.gaana.enums.SearchType;
 import in.pathri.gaana.enums.UsageOptions;
 import in.pathri.gaana.extractor.MainExtractor;
 import in.pathri.gaana.utilities.MiscUtilities;
+import in.pathri.gaana.utilities.NativeMessagingHelper;
 import in.pathri.gaana.utilities.UserPrompts;
 import it.sauronsoftware.junique.AlreadyLockedException;
 import it.sauronsoftware.junique.JUnique;
@@ -30,6 +31,26 @@ public class GaanaDownloader {
 	
 	private static void appInit(boolean fromExtension){
 		boolean isRunning = checkIfRunning();
+		if (!isRunning) {
+			if(fromExtension){
+				NativeMessagingHelper.sendMessage(Global.DOWNLOADER_NOT_RUNNING, true);
+			} else {
+				downloaderInit();
+			}
+		}else{
+			String msg = NativeMessagingHelper.readMessage(System.in);
+			String retVal = "true";
+			if(!msg.isEmpty()){
+				retVal = JUnique.sendMessage(Global.APP_ID,msg);	
+			}			
+//			System.out.println("Send message returned" + retVal + Thread.currentThread().getId());	
+			if(retVal.equalsIgnoreCase("true")){
+				NativeMessagingHelper.sendMessage(Global.INVALID_REQUEST, true);	
+			}else{
+				NativeMessagingHelper.sendMessage(Global.DOWNLOAD_TRIGGERED, false);
+			}
+			
+		}
 	}
 	
 	private static boolean checkIfRunning(){
