@@ -15,11 +15,13 @@ import org.apache.logging.log4j.Logger;
 import in.pathri.gaana.constants.Global;
 import in.pathri.gaana.dao.DownloadLinksDAO;
 import in.pathri.gaana.utilities.DownloadTask;
+import in.pathri.gaana.utilities.ProgressLogger;
 import in.pathri.gaana.utilities.UserPrompts;
 
 public class DownloadHelper {
 	static final Logger logger = LogManager.getLogger();
 	static List<String> failureList = new ArrayList<String>();
+	public static ProgressLogger progressLogger = new ProgressLogger("File Downloded... ");
 
 	public static void doDownload() {
 		Map<String, String> downloadLinks = DownloadLinksDAO.getDownloadLinks();
@@ -40,6 +42,7 @@ public class DownloadHelper {
 		logger.traceEntry("DownloadLinks Size:{}",downloadLinks.size());
 		resetDownloadFailureList();
 		ExecutorService pool = Executors.newFixedThreadPool(10);
+		progressLogger.setTotalCount(downloadLinks.size());
 		for (Entry<String, String> downloadElement : downloadLinks.entrySet()) {
 			String track_id = downloadElement.getKey();
 			String downloadURL = downloadElement.getValue();

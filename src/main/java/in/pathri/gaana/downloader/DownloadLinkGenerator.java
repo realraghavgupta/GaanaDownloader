@@ -14,6 +14,7 @@ import in.pathri.gaana.utilities.CSVExporterImport;
 import in.pathri.gaana.utilities.DownloadParamHelper;
 import in.pathri.gaana.utilities.GaanaUtilities;
 import in.pathri.gaana.utilities.HTTPHelper;
+import in.pathri.gaana.utilities.ProgressLogger;
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
 
@@ -28,13 +29,21 @@ public class DownloadLinkGenerator {
 			importResults();
 		}
 		DownloadLinksDAO.resetData();
+		int recordCount = importedResults.size();
+		int currentRecord = 0;
+		ProgressLogger progressLogger = new ProgressLogger("Fetching Track Download links...");
 		for (String[] record : importedResults) {
+			currentRecord++;
 			String album_id = record[0];
 			String[] trackIds = record[1].split(",");
 			String name = record[2];
 			String[] downloadLinkRecord = null;
+			logger.info("Fetching Download links for Album {} of {}", currentRecord, recordCount);
+			int trackCount = trackIds.length;
+			progressLogger.setTotalCount(trackCount);
 			for (String track_id : trackIds) {
 				downloadLinkRecord = new String[4];
+				progressLogger.updateProgress(1).displayProgress();
 				String downloadURL = getTrackDownloadLinks(track_id);
 				if (null != downloadURL) {
 					downloadLinkRecord[0] = album_id;

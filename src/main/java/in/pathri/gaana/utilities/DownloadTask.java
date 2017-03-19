@@ -64,6 +64,7 @@ public class DownloadTask implements Runnable {
  
             logger.info("File Downloaded::" + filePath);
             success = true;
+            DownloadHelper.progressLogger.updateProgress(1).displayProgress();
         } else {
         	logger.info("No file to download. Server replied HTTP code::{}",responseCode);
         }

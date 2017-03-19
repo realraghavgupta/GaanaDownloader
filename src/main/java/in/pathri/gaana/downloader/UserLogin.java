@@ -75,7 +75,7 @@ public class UserLogin {
 			}
 		}
 		if (user.hasToken()) {
-			logger.info("User Token::{}", user.getToken());
+			logger.debug("User Token::{}", user.getToken());
 			DownloadParamHelper.setUserToken(user.getToken());
 			return true;
 		}
