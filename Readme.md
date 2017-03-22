@@ -5,6 +5,12 @@
 
 A Java tool to download and convert songs to MP3 from Gaana in Bulk
 
+<pre>
+<b>Note:</b>
+    Primary aim of this tool is to do bulk downloads, but individual downloads will also be supported in future. 
+    For list of search options supported and to suggest new features, kindly take a look at Issue <a href="https://github.com/PathriK/GaanaDownloader/issues/2">#2</a>
+</pre>
+
 ## Gaana:
 
 [Gaana](http://gaana.com/) is a music streaming free service. There are also mobile Apps that allow users to listen to music for free in their mobiles. 
