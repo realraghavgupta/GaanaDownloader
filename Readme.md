@@ -41,7 +41,7 @@ https://github.com/PathriK/GaanaDownloader/releases
 
 Latest Snapshot Version (v1.2):
 
-https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-1.2-SNAPSHOT.zip
+https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-1.3-SNAPSHOT.zip
 
 ## Contact:
 Gmail: pathrikumark@gmail.com
@@ -49,6 +49,10 @@ Gmail: pathrikumark@gmail.com
 Gitter: https://gitter.im/PathriK/GaanaDownloader
 
 ## CHANGELOG:
+v1.2(21 Mar 2017):
+- Fixed #8 : No buffer error when downloading all songs
+- Neater command output
+
 
 v1.1(24 Jan 2017):
 - Fixed #4 : Works in Linux now
