@@ -1,7 +1,5 @@
 package in.pathri.gaana.constants;
 
-import in.pathri.gaana.enums.SearchType;
-
 public final class DownloadParam {
 	private static Quality quality;
 	

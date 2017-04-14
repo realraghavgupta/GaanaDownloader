@@ -4,23 +4,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DownloadLinksDAO {
-private static Map<String, String> downloadLinks;
+	private static Map<String, String> downloadLinks;
 
-public static void resetData(){
-	downloadLinks = new HashMap<String, String>();
-}
-
-public static Map<String, String> getDownloadLinks() {
-	if(null == downloadLinks){
-		resetData();
+	public static void resetData() {
+		downloadLinks = new HashMap<String, String>();
 	}
-	return downloadLinks;
-}
 
-public static void addLink(String file_id, String downloadURL) {
-	if(null == downloadLinks){
-		resetData();
+	public static Map<String, String> getDownloadLinks() {
+		if (null == downloadLinks) {
+			resetData();
+		}
+		return downloadLinks;
 	}
-	downloadLinks.put(file_id, downloadURL);
-}
+
+	public static void addLink(String file_id, String downloadURL) {
+		if (null == downloadLinks) {
+			resetData();
+		}
+		downloadLinks.put(file_id, downloadURL);
+	}
 }

@@ -1,10 +1,14 @@
 package in.pathri.gaana.dao;
 
 public class User implements java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6794124712995006043L;
 	private String userName;
 	private String password;
 	private String token;
-	private boolean doAlbumSplit = true;
+//	private boolean doAlbumSplit = true;
 
 	public User(String userName, String password) {
 		this.userName = userName;

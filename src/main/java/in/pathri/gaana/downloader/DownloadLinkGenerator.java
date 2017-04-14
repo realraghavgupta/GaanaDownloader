@@ -15,6 +15,7 @@ import in.pathri.gaana.utilities.DownloadParamHelper;
 import in.pathri.gaana.utilities.GaanaUtilities;
 import in.pathri.gaana.utilities.HTTPHelper;
 import in.pathri.gaana.utilities.ProgressLogger;
+import in.pathri.gaana.utilities.UserPrompts;
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
 
@@ -54,16 +55,14 @@ public class DownloadLinkGenerator {
 				if (null != downloadLinkRecord) {
 					downloadLinks.add(downloadLinkRecord);
 					DownloadLinksDAO.addLink(track_id, downloadURL);
-				}				
+				}
 			}
-			
-		}		
+		}
 	}
 
 	private static String getTrackDownloadLinks(String track_id) {
 		DownloadParamHelper downloadParamHelper = new DownloadParamHelper();
-		downloadParamHelper.initParams(DownloadParam.ConnectionType.WIFI, DownloadParam.getQuality(),
-				DownloadParam.DeliveryType.DOWNLOAD);
+		downloadParamHelper.initParams(DownloadParam.ConnectionType.WIFI, DownloadParam.getQuality(), DownloadParam.DeliveryType.DOWNLOAD);
 		downloadParamHelper.setTrackId(track_id);
 		Map<String, String> params = downloadParamHelper.getParams();
 		try {
@@ -76,6 +75,8 @@ public class DownloadLinkGenerator {
 					String downloadURL = GaanaUtilities.decodeDownloadURL(data);
 					return downloadURL;
 				}
+			} else {
+				UserPrompts.notPlusUser();
 			}
 			return "";
 		} catch (Exception e) {
@@ -134,13 +135,13 @@ public class DownloadLinkGenerator {
 		DownloadLinksDAO.resetData();
 		do {
 			tempRecord = importer.getNextRecord();
-			if (null != tempRecord){
+			if (null != tempRecord) {
 				String track_id = tempRecord[2];
 				String downloadURL = tempRecord[3];
 				if (!track_id.isEmpty() && !downloadURL.isEmpty()) {
 					DownloadLinksDAO.addLink(track_id, downloadURL);
-				}				
+				}
 			}
-		} while (null != tempRecord);		
+		} while (null != tempRecord);
 	}
 }
