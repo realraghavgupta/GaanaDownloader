@@ -9,7 +9,11 @@ import in.pathri.gaana.enums.SearchType;
 import in.pathri.gaana.enums.UsageOptions;
 import in.pathri.gaana.extractor.MainExtractor;
 import in.pathri.gaana.utilities.MiscUtilities;
+import in.pathri.gaana.utilities.NativeMessagingHelper;
 import in.pathri.gaana.utilities.UserPrompts;
+import it.sauronsoftware.junique.AlreadyLockedException;
+import it.sauronsoftware.junique.JUnique;
+import it.sauronsoftware.junique.MessageHandler;
 
 public class GaanaDownloader {
 	static final Logger logger = LogManager.getLogger();
@@ -18,6 +22,56 @@ public class GaanaDownloader {
 
 	public static void main(String[] args) {
 		logger.traceEntry("Parameters::{}", String.join(";", args));
+		boolean fromExtension = args.length > 0? Boolean.valueOf(args[0]):false;
+		appInit(fromExtension);	
+		
+		
+//		downloaderInit();
+	}
+	
+	private static void appInit(boolean fromExtension){
+		boolean isRunning = checkIfRunning();
+		if (!isRunning) {
+			if(fromExtension){
+				NativeMessagingHelper.sendMessage(Global.DOWNLOADER_NOT_RUNNING, true);
+			} else {
+				downloaderInit();
+			}
+		}else{
+			String msg = NativeMessagingHelper.readMessage(System.in);
+			String retVal = "true";
+			if(!msg.isEmpty()){
+				retVal = JUnique.sendMessage(Global.APP_ID,msg);	
+			}			
+//			System.out.println("Send message returned" + retVal + Thread.currentThread().getId());	
+			if(retVal.equalsIgnoreCase("true")){
+				NativeMessagingHelper.sendMessage(Global.INVALID_REQUEST, true);	
+			}else{
+				NativeMessagingHelper.sendMessage(Global.DOWNLOAD_TRIGGERED, false);
+			}
+			
+		}
+	}
+	
+	private static boolean checkIfRunning(){
+		try {
+			JUnique.acquireLock(Global.APP_ID, new MessageHandler(){
+				@Override
+				public String handle(String msg) {
+					//TODO: Recieve Message
+					//String retVal = myApp.recieveMessage(msg);
+					//return retVal;
+					return "";
+				}				
+			});
+			return false;
+		}catch (AlreadyLockedException e) {
+//			System.out.println("catching exception" + Thread.currentThread().getId());
+			return true;
+		}		
+	}
+	
+	private static void downloaderInit(){		
 		try {
 			bulkDownload();
 			logger.traceExit();
@@ -25,7 +79,7 @@ public class GaanaDownloader {
 		} catch (Exception e) {
 			logger.catching(e);
 		}
-		logger.traceExit();
+		logger.traceExit();		
 	}
 
 	public static void bulkDownload() {
