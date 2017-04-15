@@ -15,11 +15,13 @@ import org.apache.logging.log4j.Logger;
 import in.pathri.gaana.constants.Global;
 import in.pathri.gaana.dao.DownloadLinksDAO;
 import in.pathri.gaana.utilities.DownloadTask;
+import in.pathri.gaana.utilities.ProgressLogger;
 import in.pathri.gaana.utilities.UserPrompts;
 
 public class DownloadHelper {
 	static final Logger logger = LogManager.getLogger();
 	static List<String> failureList = new ArrayList<String>();
+	public static ProgressLogger progressLogger = new ProgressLogger("File Downloded... ");
 
 	public static void doDownload() {
 		Map<String, String> downloadLinks = DownloadLinksDAO.getDownloadLinks();
@@ -32,38 +34,37 @@ public class DownloadHelper {
 			UserPrompts.noDownloadLinks();
 			UserPrompts.doExit();
 		}
-		logger.debug("Download Links Size::{}",downloadLinks.size());
+		logger.debug("Download Links Size::{}", downloadLinks.size());
 		triggerBulkDownload(downloadLinks);
 	}
 
 	private static void triggerBulkDownload(Map<String, String> downloadLinks) {
-		logger.traceEntry("DownloadLinks Size:{}",downloadLinks.size());
+		logger.traceEntry("DownloadLinks Size:{}", downloadLinks.size());
 		resetDownloadFailureList();
 		ExecutorService pool = Executors.newFixedThreadPool(10);
+		progressLogger.setTotalCount(downloadLinks.size());
 		for (Entry<String, String> downloadElement : downloadLinks.entrySet()) {
 			String track_id = downloadElement.getKey();
 			String downloadURL = downloadElement.getValue();
-			pool.submit(new DownloadTask(downloadURL, getDownloadPath(track_id),track_id));
+			pool.submit(new DownloadTask(downloadURL, getDownloadPath(track_id), track_id));
 		}
 		pool.shutdown();
 		try {
 			pool.awaitTermination(Long.MAX_VALUE, TimeUnit.MILLISECONDS);
-			if(failureList.isEmpty()){
-				logger.info("All Songs Downloaded");	
-			}else{
+			if (failureList.isEmpty()) {
+				logger.info("All Songs Downloaded");
+			} else {
 				UserPrompts.promtDownloadFailure(failureList);
 			}
-			
+
 		} catch (InterruptedException e) {
 			logger.catching(e);
 		}
 	}
 
 	private static void resetDownloadFailureList() {
-		failureList.clear();		
+		failureList.clear();
 	}
-	
-	
 
 	private static String getDownloadPath(String track_id) {
 		return Global.DOWNLOAD_FOLDER_NAME + File.separator + track_id;

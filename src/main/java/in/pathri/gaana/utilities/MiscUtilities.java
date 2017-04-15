@@ -41,8 +41,8 @@ public class MiscUtilities {
 
 	public static void createParentFolders(String filePath) {
 		File parentPath = new File(filePath).getParentFile();
-		if(!parentPath.exists()){
+		if (!parentPath.exists()) {
 			parentPath.mkdirs();
-		}		
+		}
 	}
 }

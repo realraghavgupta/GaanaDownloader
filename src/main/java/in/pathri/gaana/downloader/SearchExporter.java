@@ -24,11 +24,12 @@ public class SearchExporter {
 			break;
 		}
 		exporter.initExporter(filePath);
-		exporter.addColumnHeader(Global.EXPORT_COLUMNS);		
+		exporter.addColumnHeader(Global.EXPORT_COLUMNS);
 	}
-	public static void appendResults(JSONArray results) {	
+
+	public static void appendAlbumResults(JSONArray results) {
 		JSONObject record;
-		String[] values;		
+		String[] values;
 		for (Object jsonObject : results) {
 			record = (JSONObject) jsonObject;
 			values = new String[3];
@@ -38,10 +39,22 @@ public class SearchExporter {
 			exporter.addRecordValues(values);
 		}
 	}
-	
+
+	public static void appendTrackResults(JSONArray results) {
+		JSONObject record;
+		String[] values;
+		for (Object jsonObject : results) {
+			record = (JSONObject) jsonObject;
+			values = new String[3];
+			values[0] = record.getAsString("album_id");
+			values[1] = record.getAsString("track_id");
+			values[2] = record.getAsString("album_title");
+			exporter.addRecordValues(values);
+		}
+	}
+
 	public static void end() {
 		exporter.doExport();
-		logger.traceExit();		
+		logger.traceExit();
 	}
-	
 }

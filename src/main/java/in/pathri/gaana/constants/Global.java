@@ -17,7 +17,7 @@ public class Global {
 	public static final String[] DOWNLOAD_LINK_EXPORT_HEADERS = "Album_ID,Name,Track_ID,Download_Link".split(",");
 
 	public static final String DOWNLOAD_FOLDER_NAME = "Downloaded_Songs";
-	
+
 	public static final String BREAK = "************************************************";
 	public static final String GREET = "Hello! Welcome to Gaana Downloader!";
 	public static final String USAGE_OPTION_NEW_SEARCH = "Do a New Search";
@@ -27,27 +27,26 @@ public class Global {
 	public static final String USAGE_OPTION_DOWNLOAD_FROM_GENERATED_LINKS = "Download using the Generated Links";
 	public static final String USAGE_OPTION_DOWNLOAD_FROM_GENERATED_LINKS_HINT = "(If gonna use external Download Tool like JDownloader, this step should be skipped)";
 	public static final String USAGE_OPTION_COVERT_DOWNLOADED_SONGS = "Convert the downloaded songs to meaningful audio files";
-	
-	public static final String PROCESS_FLOW = "The process flow to download songs is:" + "\n" +
-												"1. " + USAGE_OPTION_NEW_SEARCH + USAGE_OPTION_NEW_SEARCH_HINT + "\n" +
-												"1B. " + USAGE_OPTION_SELECT_TO_DOWNLOAD + "\n" +
-												"2. " + USAGE_OPTION_GENERATE_DOWNLOAD_LINKS + "\n" +
-												"3. " + USAGE_OPTION_DOWNLOAD_FROM_GENERATED_LINKS + USAGE_OPTION_DOWNLOAD_FROM_GENERATED_LINKS_HINT + "\n" +
-												"4. " + USAGE_OPTION_COVERT_DOWNLOADED_SONGS;
-	
+
+	public static final String PROCESS_FLOW = "The process flow to download songs is:" + "\n" + "1. " + USAGE_OPTION_NEW_SEARCH + USAGE_OPTION_NEW_SEARCH_HINT + "\n" + "1B. " + USAGE_OPTION_SELECT_TO_DOWNLOAD + "\n" + "2. "
+			+ USAGE_OPTION_GENERATE_DOWNLOAD_LINKS + "\n" + "3. " + USAGE_OPTION_DOWNLOAD_FROM_GENERATED_LINKS + USAGE_OPTION_DOWNLOAD_FROM_GENERATED_LINKS_HINT + "\n" + "4. " + USAGE_OPTION_COVERT_DOWNLOADED_SONGS;
+
 	public static final String USERNAME_PROMPT = "Please Enter your User Name:";
 	public static final String PASSWORD_PROMPT = "Please Enter your Password:";
-		
+
 	public static final String OPTION_PROMT = "Please select a option number from above:";
-	
+
 	public static final String USAGE_OPTION_PROMPT = "How do you want to proceed?";
 	public static final String LANGUAGE_PROMPT = "Please select the language:";
 	public static final String SEARCHTYPE_PROMPT = "Please select a type of Search";
 
 	public static final String DOWNLOAD_QUALITY_PROMPT = "Please Select a Download Quality";
-	
+
+	public static final String ALBUM_ID_LIST_PROMPT = "Please enter the list of Album IDs to download seperated by a comma if any and press Enter";
+	public static final String TRACK_ID_LIST_PROMPT = "Please enter the list of Track IDs to download seperated by a comma if any and press Enter";
+
 	public static final String QUIT_RESUME = "program will Quit and can be Resumed through a Re-Run";
-	
+
 	public static final String DO_WAIT_FOR_SELECTION = "Do you want the program to wait till you make your selection in Excel? (Yes or No). If No, " + QUIT_RESUME;
 	public static final String LINKS_GENERATED_PROMPT = "Download links have been generated in the Excel. Do you wish to download songs using external program?. If yes, " + QUIT_RESUME;
 	public static final String HAS_UPDATED_RESULTS = "Please update Search Result sheet, if not done already. Do you wish to proceed? (Yes or No). If No, " + QUIT_RESUME;
@@ -60,13 +59,11 @@ public class Global {
 	public static final String UNKNOWN_ERROR = "Some Unknown Error Occured! Please re-run the program.";
 	public static final String DOWNLOAD_FAILURE = "Following Tracks were not downloaded due to error::";
 	public static final String NO_RESULTS_FOUND = "No search results found. Kindly re-run with different search criteria";
-	
+	public static final String NOT_PLUS_USER = "Error! This operation is supported only for Gaana+ Users.";
 	public static final String ERROR_FLAG = "errorFlag";
 	public static final String NATIVE_MESSAGE = "message";
 	
 	public static final String DOWNLOADER_NOT_RUNNING = "Downloader not running!";
 	public static final String INVALID_REQUEST = "Request not in correct format!";
 	public static final String DOWNLOAD_TRIGGERED = "Download process triggered!";
-
-
 }

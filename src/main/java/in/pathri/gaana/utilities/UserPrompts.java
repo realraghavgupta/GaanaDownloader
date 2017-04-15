@@ -22,8 +22,8 @@ public class UserPrompts {
 	static {
 		input = new Scanner(System.in);
 	}
-	
-	public static void greetAndInfo(){
+
+	public static void greetAndInfo() {
 		printBreak();
 		System.out.println(Global.GREET);
 		printBreak();
@@ -41,8 +41,6 @@ public class UserPrompts {
 
 		System.out.println(Global.PASSWORD_PROMPT);
 		password = input.nextLine();
-
-		// input.close();
 
 		return new User(userName, password);
 	}
@@ -107,7 +105,6 @@ public class UserPrompts {
 		}
 		return response;
 	}
-	
 
 	public static void getDownloadQuality() {
 		String userResponse = "";
@@ -125,15 +122,37 @@ public class UserPrompts {
 			logger.info("selected option:{}", userResponse);
 			response = Quality.getEnum(MiscUtilities.parseInt(userResponse));
 		}
-		
-		DownloadParam.setQuality(response);		
+
+		DownloadParam.setQuality(response);
+	}
+
+	public static String getAlbumIDs() {
+		String userResponse = "";
+		System.out.println("");
+		System.out.println(Global.ALBUM_ID_LIST_PROMPT);
+		userResponse = input.nextLine();
+		return userResponse;
+	}
+
+	public static String getTrackIDs() {
+		String userResponse = "";
+		System.out.println("");
+		System.out.println(Global.TRACK_ID_LIST_PROMPT);
+		userResponse = input.nextLine();
+		return userResponse;
 	}
 
 	public static void noResultsFound() {
 		System.out.println(Global.NO_RESULTS_FOUND);
 		doExit();
 	}
-	
+
+	public static void notPlusUser() {
+		System.out.println("");
+		System.out.println(Global.NOT_PLUS_USER);
+		doExit();
+	}
+
 	public static void doExit() {
 		System.out.println(Global.EXIT_PROMPT);
 		input.nextLine();
@@ -162,6 +181,7 @@ public class UserPrompts {
 
 	private static boolean yesNoPrompt(String prompt) {
 		String userResponse = "";
+		System.out.println("");
 		while (true) {
 			System.out.println(prompt);
 			userResponse = input.nextLine();
@@ -182,23 +202,17 @@ public class UserPrompts {
 	public static void unknownError() {
 		System.out.println(Global.UNKNOWN_ERROR);
 		doExit();
-		
 	}
-	
-	private static void printBreak(){
+
+	private static void printBreak() {
 		System.out.println(Global.BREAK);
 	}
 
 	public static void noDownloadLinks() {
 		System.out.println(Global.NO_DOWNLOAD_LINKS);
-		
 	}
 
 	public static void promtDownloadFailure(List<String> failureList) {
 		System.out.println(Global.DOWNLOAD_FAILURE + String.join(";", failureList));
-		
-		
 	}
-
-
 }
