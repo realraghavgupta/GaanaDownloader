@@ -18,6 +18,7 @@ public class Global {
 
 	public static final String BREAK = "************************************************";
 	public static final String GREET = "Hello! Welcome to Gaana Downloader!";
+	public static final String USAGE_OPTION_EXTENSION_LISTEN = "Listen for results from Chrome Extension";
 	public static final String USAGE_OPTION_NEW_SEARCH = "Do a New Search";
 	public static final String USAGE_OPTION_NEW_SEARCH_HINT = "(Produces CSV file with list of Tracks/Albums)";
 	public static final String USAGE_OPTION_SELECT_TO_DOWNLOAD = "Select the Albums/Tracks from the CSV";
@@ -58,4 +59,5 @@ public class Global {
 	public static final String DOWNLOAD_FAILURE = "Following Tracks were not downloaded due to error::";
 	public static final String NO_RESULTS_FOUND = "No search results found. Kindly re-run with different search criteria";
 	public static final String NOT_PLUS_USER = "Error! This operation is supported only for Gaana+ Users.";
+
 }

@@ -88,6 +88,9 @@ public class UserPrompts {
 	}
 
 	public static SearchType getSearchType() {
+		if(UserPromptStubber.isStubbed()){
+			return UserPromptStubber.getSearchType();
+		}
 		String userResponse = "";
 		SearchType response = null;
 		System.out.println(Global.SEARCHTYPE_PROMPT);
@@ -127,6 +130,9 @@ public class UserPrompts {
 	}
 
 	public static String getAlbumIDs() {
+		if(UserPromptStubber.isStubbed()){
+			return UserPromptStubber.getAlbumIDs();
+		}
 		String userResponse = "";
 		System.out.println("");
 		System.out.println(Global.ALBUM_ID_LIST_PROMPT);
@@ -135,6 +141,9 @@ public class UserPrompts {
 	}
 
 	public static String getTrackIDs() {
+		if(UserPromptStubber.isStubbed()){
+			return UserPromptStubber.getTrackIDs();
+		}		
 		String userResponse = "";
 		System.out.println("");
 		System.out.println(Global.TRACK_ID_LIST_PROMPT);
@@ -160,11 +169,14 @@ public class UserPrompts {
 	}
 
 	public static boolean waitForUserSelection() {
+		if(UserPromptStubber.isStubbed() && UserPromptStubber.stubSearchSelection()){
+			return true;
+		}
 		return yesNoPrompt(Global.DO_WAIT_FOR_SELECTION);
 	}
 
 	public static boolean hasUpdatedResultsSheet() {
-		if (yesNoPrompt(Global.HAS_UPDATED_RESULTS)) {
+		if ((UserPromptStubber.isStubbed() && UserPromptStubber.stubSearchSelection()) || yesNoPrompt(Global.HAS_UPDATED_RESULTS)) {
 			return DownloadLinkGenerator.checkIfResultsUpdated();
 		}
 		return false;

@@ -14,6 +14,7 @@ public class ProgressLogger {
 		this.totalCount = 0;
 		this.currentCount = 0;
 		this.currentProgress = 0;
+		System.out.println("");
 	}
 
 	public void setTotalCount(int totalCount) {
@@ -30,5 +31,8 @@ public class ProgressLogger {
 	public void displayProgress() {
 		System.out.print("\r");
 		System.out.format(this.format, this.currentCount, this.totalCount, this.currentProgress);
+		if(Long.compare(this.currentCount, this.totalCount) == 0){
+			System.out.println("");
+		}
 	}
 }

@@ -7,6 +7,7 @@ import in.pathri.gaana.constants.Global;
 import in.pathri.gaana.enums.ExportType;
 import in.pathri.gaana.utilities.CSVExporterImport;
 import in.pathri.gaana.utilities.ExporterImportInterface;
+import in.pathri.gaana.utilities.UserPromptStubber;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 
@@ -32,10 +33,13 @@ public class SearchExporter {
 		String[] values;
 		for (Object jsonObject : results) {
 			record = (JSONObject) jsonObject;
-			values = new String[3];
+			values = new String[4];
 			values[0] = record.getAsString("album_id");
 			values[1] = record.getAsString("trackids");
 			values[2] = record.getAsString("title");
+			if(UserPromptStubber.isStubbed() && UserPromptStubber.stubSearchSelection()){
+				values[3] = "yes";
+			}
 			exporter.addRecordValues(values);
 		}
 	}
@@ -45,10 +49,13 @@ public class SearchExporter {
 		String[] values;
 		for (Object jsonObject : results) {
 			record = (JSONObject) jsonObject;
-			values = new String[3];
+			values = new String[4];
 			values[0] = record.getAsString("album_id");
 			values[1] = record.getAsString("track_id");
 			values[2] = record.getAsString("album_title");
+			if(UserPromptStubber.isStubbed() && UserPromptStubber.stubSearchSelection()){
+				values[3] = "yes";
+			}			
 			exporter.addRecordValues(values);
 		}
 	}
