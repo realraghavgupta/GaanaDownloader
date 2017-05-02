@@ -39,7 +39,7 @@ Releases:
 
 https://github.com/PathriK/GaanaDownloader/releases
 
-Latest Snapshot Version (v1.2):
+Latest Snapshot Version (v1.3):
 
 https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-1.3-SNAPSHOT.zip
 
