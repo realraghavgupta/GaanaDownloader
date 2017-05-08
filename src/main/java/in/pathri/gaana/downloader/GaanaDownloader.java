@@ -9,6 +9,7 @@ import in.pathri.gaana.enums.SearchType;
 import in.pathri.gaana.enums.StubTypes;
 import in.pathri.gaana.enums.UsageOptions;
 import in.pathri.gaana.extractor.MainExtractor;
+import in.pathri.gaana.utilities.ExtensionHelper;
 import in.pathri.gaana.utilities.MiscUtilities;
 import in.pathri.gaana.utilities.UserPromptStubber;
 import in.pathri.gaana.utilities.UserPrompts;
@@ -18,8 +19,8 @@ public class GaanaDownloader {
 
 	public native String[] stringFromMethod();
 
-	public static void main(String[] args) {
-		logger.traceEntry("Parameters::{}", String.join(";", args));
+	public static void init() {
+		//logger.traceEntry("Parameters::{}", String.join(";", args));
 		try {
 			bulkDownload();
 			logger.traceExit();
@@ -39,9 +40,14 @@ public class GaanaDownloader {
 
 			switch (usageOption) {
 			case LISTEN_FROM_EXTENSION:
+				UserPrompts.awaitExtensionMsg();
+				ExtensionHelper.awaitExtensionMsg();
 				UserPromptStubber.setStubType(StubTypes.EXTENSION);
+				UserPrompts.showExtensionSelection();
 			case NEW_SEARCH:
-				logger.info("Doing a new search");
+				if(!UserPromptStubber.isStubbed()){
+					logger.info("Doing a new search");	
+				}				
 				SearchType searchType = UserPrompts.getSearchType();
 				SearchExporter.init(ExportType.CSV, Global.SEARCH_RESULTS_FILE_NAME);
 				GaanaSearch.doSearch(searchType);

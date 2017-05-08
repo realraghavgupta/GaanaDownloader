@@ -1,5 +1,6 @@
 package in.pathri.gaana.utilities;
 
+import in.pathri.gaana.dao.ExtensionDAO;
 import in.pathri.gaana.enums.SearchType;
 import in.pathri.gaana.enums.StubTypes;
 
@@ -13,8 +14,8 @@ public class UserPromptStubber {
 		switch (stubType) {
 		case EXTENSION:
 			stubSearchSelection = true;
-			setAlbumIDs("92317,4341");
-			setTrackIDs("46608,47798,32550");
+			setAlbumIDs(ExtensionDAO.getInstance().getAlbumIdString());
+			setTrackIDs(ExtensionDAO.getInstance().getSongIdString());
 			break;
 
 		default:

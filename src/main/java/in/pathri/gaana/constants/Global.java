@@ -1,6 +1,8 @@
 package in.pathri.gaana.constants;
 
 public class Global {
+	public static final String APP_ID = "in.pathri.gaana.gaana_downloader";
+	
 	public static final String HASH_KEY = "1594fdf1a2d607590747d5cad924fcac";
 	public static final String URL_DECODE_KEY = "c1c6b8b2c1b1a1c7";
 
@@ -60,4 +62,16 @@ public class Global {
 	public static final String NO_RESULTS_FOUND = "No search results found. Kindly re-run with different search criteria";
 	public static final String NOT_PLUS_USER = "Error! This operation is supported only for Gaana+ Users.";
 
+	public static final String WAIT_FOR_EXTENSION = "Ready! Kindly select and trigger download from Chrome Extension";
+	
+	public static final String ERROR_FLAG = "errorFlag";
+ 	public static final String NATIVE_MESSAGE = "message";
+ 	
+ 	public static final String DOWNLOADER_NOT_RUNNING = "Downloader not running!";
+ 	public static final String INVALID_REQUEST = "Request not in correct format!";
+ 	public static final String DOWNLOAD_TRIGGERED = "Download process triggered!";
+
+	public static final String EXTENSION_SELECTION = "Got following selection from Extension:";
+
+	public static final String NATIVE_MESSAGE_LOGFILE_NAME = "Chrome_Extension.log";	
 }

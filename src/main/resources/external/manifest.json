@@ -1,0 +1,9 @@
+{
+	"name": "in.pathri.gaana.gaana_downloader",
+	"description": "Gaana Downloader",
+	"path": "GaanaDownloader_Extension.bat",
+	"type": "stdio",
+	"allowed_origins": [
+		"chrome-extension://kgcplmdmcippgcemhmegampljjoolnjc/"
+	]
+}

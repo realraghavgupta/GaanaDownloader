@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import in.pathri.gaana.constants.DownloadParam;
 import in.pathri.gaana.constants.DownloadParam.Quality;
 import in.pathri.gaana.constants.Global;
+import in.pathri.gaana.dao.ExtensionDAO;
 import in.pathri.gaana.dao.User;
 import in.pathri.gaana.downloader.DownloadLinkGenerator;
 import in.pathri.gaana.enums.Language;
@@ -226,5 +227,14 @@ public class UserPrompts {
 
 	public static void promtDownloadFailure(List<String> failureList) {
 		System.out.println(Global.DOWNLOAD_FAILURE + String.join(";", failureList));
+	}
+
+	public static void awaitExtensionMsg() {
+		System.out.println(Global.WAIT_FOR_EXTENSION);
+		
+	}
+
+	public static void showExtensionSelection() {
+		System.out.println(Global.EXTENSION_SELECTION + ExtensionDAO.getInstance().toString());
 	}
 }
