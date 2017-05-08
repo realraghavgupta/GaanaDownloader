@@ -35,8 +35,8 @@ public class DownloadLinkGenerator {
 		ProgressLogger progressLogger = new ProgressLogger("Fetching Track Download links...");
 		for (String[] record : importedResults) {
 			currentRecord++;
-			String album_id = record[0];
-			String[] trackIds = record[1].split(",");
+			String album_id = record[0].replace("'", "");
+			String[] trackIds = record[1].replace("'", "").split(",");
 			String name = record[2];
 			String[] downloadLinkRecord = null;
 			logger.info("Fetching Download links for Album {} of {}", currentRecord, recordCount);

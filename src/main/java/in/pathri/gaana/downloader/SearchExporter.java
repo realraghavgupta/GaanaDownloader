@@ -33,8 +33,8 @@ public class SearchExporter {
 		for (Object jsonObject : results) {
 			record = (JSONObject) jsonObject;
 			values = new String[3];
-			values[0] = record.getAsString("album_id");
-			values[1] = record.getAsString("trackids");
+			values[0] = "'" + record.getAsString("album_id");
+			values[1] = "'" + record.getAsString("trackids");
 			values[2] = record.getAsString("title");
 			exporter.addRecordValues(values);
 		}
@@ -46,8 +46,8 @@ public class SearchExporter {
 		for (Object jsonObject : results) {
 			record = (JSONObject) jsonObject;
 			values = new String[3];
-			values[0] = record.getAsString("album_id");
-			values[1] = record.getAsString("track_id");
+			values[0] = "'" + record.getAsString("album_id");
+			values[1] = "'" + record.getAsString("track_id");
 			values[2] = record.getAsString("album_title");
 			exporter.addRecordValues(values);
 		}
