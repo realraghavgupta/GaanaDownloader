@@ -39,9 +39,9 @@ Releases:
 
 https://github.com/PathriK/GaanaDownloader/releases
 
-Latest Snapshot Version (v1.3):
+Latest Snapshot Version (v1.4):
 
-https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-1.3-SNAPSHOT.zip
+https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-1.4-SNAPSHOT.zip
 
 ## Contact:
 Gmail: pathrikumark@gmail.com
@@ -49,16 +49,19 @@ Gmail: pathrikumark@gmail.com
 Gitter: https://gitter.im/PathriK/GaanaDownloader
 
 ## CHANGELOG:
+v1.3(13 May 2017):
+- Fixes #8: Some bugs croppeed up with previous fix. All good now
+- Fixes #11: Was an issue where Excel incorrectly interprets the TrackIds. Fixed by adding "'" before the trackids
+- Closes #15: This is a valid error as the same error comes up in the Gaana App/Web too. Contrary to the error message it is showing, I believe the tracks have not been made available yet
+
 v1.2(21 Mar 2017):
 - Fixed #8 : No buffer error when downloading all songs
 - Neater command output
-
 
 v1.1(24 Jan 2017):
 - Fixed #4 : Works in Linux now
 - Fixed #5 : Users can now select the Song download quality
 - Fixed #6 : Now the tool can convert songs that has been downloaded using external download managers
-
 
 v1.0:
 - Initial Release
