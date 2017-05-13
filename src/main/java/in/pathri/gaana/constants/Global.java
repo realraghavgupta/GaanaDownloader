@@ -12,7 +12,7 @@ public class Global {
 	public static final String SEARCH_RESULTS_FILE_NAME = "SearchResult.csv";
 
 	public static final String DOWNLOAD_LINK_FILE_NAME = "DownloadLinks.csv";
-	public static final String[] DOWNLOAD_LINK_EXPORT_HEADERS = "Album_ID,Name,Track_ID,Download_Link".split(",");
+	public static final String[] DOWNLOAD_LINK_EXPORT_HEADERS = "Has_Errors,Album_ID,Name,Track_ID,Download_Link".split(",");
 
 	public static final String DOWNLOAD_FOLDER_NAME = "Downloaded_Songs";
 

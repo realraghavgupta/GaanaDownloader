@@ -7,15 +7,16 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import in.pathri.gaana.constants.ArrayIndex;
 import in.pathri.gaana.constants.DownloadParam;
 import in.pathri.gaana.constants.Global;
 import in.pathri.gaana.dao.DownloadLinksDAO;
+import in.pathri.gaana.dao.ErroCodeLookUp;
 import in.pathri.gaana.utilities.CSVExporterImport;
 import in.pathri.gaana.utilities.DownloadParamHelper;
 import in.pathri.gaana.utilities.GaanaUtilities;
 import in.pathri.gaana.utilities.HTTPHelper;
 import in.pathri.gaana.utilities.ProgressLogger;
-import in.pathri.gaana.utilities.UserPrompts;
 import net.minidev.json.JSONObject;
 import net.minidev.json.JSONValue;
 
@@ -43,18 +44,34 @@ public class DownloadLinkGenerator {
 			int trackCount = trackIds.length;
 			progressLogger.setTotalCount(trackCount);
 			for (String track_id : trackIds) {
-				downloadLinkRecord = new String[4];
+				downloadLinkRecord = new String[5];
 				progressLogger.updateProgress(1).displayProgress();
 				String downloadURL = getTrackDownloadLinks(track_id);
+				boolean hasError = false;
 				if (null != downloadURL) {
-					downloadLinkRecord[0] = album_id;
-					downloadLinkRecord[1] = name;
-					downloadLinkRecord[2] = track_id;
-					downloadLinkRecord[3] = downloadURL;
+					if(downloadURL.startsWith("ERROR_CODE")){
+						hasError = true;
+						String errorCode = downloadURL.replace("ERROR_CODE", "");
+						downloadURL = errorCode + ":" + ErroCodeLookUp.getErrorMessage(errorCode);						
+					} else if(downloadURL.startsWith("UNKNOWN_ERROR")){
+						hasError = true;
+						downloadURL = "Unknown Error From Gaana Server";
+					}
+				}else{
+					hasError = true;
+					downloadURL = "Tool Exception while getting Download URL.";
 				}
+				downloadLinkRecord[ArrayIndex.DownloadURL.HAS_ERROR] = Boolean.toString(hasError);
+				downloadLinkRecord[ArrayIndex.DownloadURL.ALBUM_ID] = album_id;
+				downloadLinkRecord[ArrayIndex.DownloadURL.NAME] = name;
+				downloadLinkRecord[ArrayIndex.DownloadURL.TRACK_ID] = track_id;
+				downloadLinkRecord[ArrayIndex.DownloadURL.DOWNLOAD_URL] = downloadURL;						
+				
 				if (null != downloadLinkRecord) {
 					downloadLinks.add(downloadLinkRecord);
-					DownloadLinksDAO.addLink(track_id, downloadURL);
+					if(!hasError){
+						DownloadLinksDAO.addLink(track_id, downloadURL);
+					}						
 				}
 			}
 		}
@@ -76,9 +93,16 @@ public class DownloadLinkGenerator {
 					return downloadURL;
 				}
 			} else {
-				UserPrompts.notPlusUser();
-			}
-			return "";
+				if(downloadData.containsKey("error_code") && downloadData.containsKey("error_msg")){
+					String errorCode = downloadData.getAsString("error_code");
+					String errorMessage = downloadData.getAsString("error_msg");
+					ErroCodeLookUp.addErrorCode(errorCode, errorMessage);
+					return "ERROR_CODE:" + errorCode;
+				}else{
+					return "UNKNOWN_ERROR";
+				}
+//				UserPrompts.notPlusUser();
+			}			
 		} catch (Exception e) {
 			logger.catching(e);
 		}
@@ -136,10 +160,13 @@ public class DownloadLinkGenerator {
 		do {
 			tempRecord = importer.getNextRecord();
 			if (null != tempRecord) {
-				String track_id = tempRecord[2];
-				String downloadURL = tempRecord[3];
-				if (!track_id.isEmpty() && !downloadURL.isEmpty()) {
-					DownloadLinksDAO.addLink(track_id, downloadURL);
+				String hasError = tempRecord[ArrayIndex.DownloadURL.HAS_ERROR];
+				if(!Boolean.getBoolean(hasError)){
+					String track_id = tempRecord[ArrayIndex.DownloadURL.TRACK_ID];
+					String downloadURL = tempRecord[ArrayIndex.DownloadURL.DOWNLOAD_URL];
+					if (!track_id.isEmpty() && !downloadURL.isEmpty()) {
+						DownloadLinksDAO.addLink(track_id, downloadURL);
+					}					
 				}
 			}
 		} while (null != tempRecord);
