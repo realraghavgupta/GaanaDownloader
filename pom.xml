@@ -69,6 +69,11 @@
 			<artifactId>commons-codec</artifactId>
 			<version>1.10</version>
 		</dependency>
+		<dependency>
+			<groupId>it.sauronsoftware</groupId>
+			<artifactId>junique</artifactId>
+			<version>1.0.4</version>
+		</dependency>		
 	</dependencies>
 	<build>
 		<plugins>
@@ -86,7 +91,7 @@
 							<outputFile>${project.build.directory}/${project.artifactId}.jar</outputFile>
 							<transformers>
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>in.pathri.gaana.downloader.GaanaDownloader</mainClass>
+									<mainClass>in.pathri.gaana.downloader.Trigger</mainClass>
 								</transformer>
 							</transformers>
 						</configuration>

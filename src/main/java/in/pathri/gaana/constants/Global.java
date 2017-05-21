@@ -1,6 +1,7 @@
 package in.pathri.gaana.constants;
 
 public class Global {
+	public static final String APP_ID = "in.pathri.gaana.gaana_downloader";
 	public static final String HASH_KEY = "1594fdf1a2d607590747d5cad924fcac";
 	public static final String URL_DECODE_KEY = "c1c6b8b2c1b1a1c7";
 
@@ -18,6 +19,7 @@ public class Global {
 
 	public static final String BREAK = "************************************************";
 	public static final String GREET = "Hello! Welcome to Gaana Downloader!";
+	public static final String USAGE_OPTION_EXTENSION_LISTEN = "Listen for results from Chrome Extension";
 	public static final String USAGE_OPTION_NEW_SEARCH = "Do a New Search";
 	public static final String USAGE_OPTION_NEW_SEARCH_HINT = "(Produces CSV file with list of Tracks/Albums)";
 	public static final String USAGE_OPTION_SELECT_TO_DOWNLOAD = "Select the Albums/Tracks from the CSV";
@@ -33,6 +35,18 @@ public class Global {
 	public static final String PASSWORD_PROMPT = "Please Enter your Password:";
 
 	public static final String OPTION_PROMT = "Please select a option number from above:";
+	public static final String WAIT_FOR_EXTENSION = "Ready! Kindly select and trigger download from Chrome Extension";
+	
+	public static final String ERROR_FLAG = "errorFlag";
+ 	public static final String NATIVE_MESSAGE = "message";
+ 	
+ 	public static final String DOWNLOADER_NOT_RUNNING = "Downloader not running!";
+ 	public static final String INVALID_REQUEST = "Request not in correct format!";
+ 	public static final String DOWNLOAD_TRIGGERED = "Download process triggered!";
+
+	public static final String EXTENSION_SELECTION = "Got following selection from Extension:";
+
+	public static final String NATIVE_MESSAGE_LOGFILE_NAME = "Chrome_Extension.log";		
 
 	public static final String USAGE_OPTION_PROMPT = "How do you want to proceed?";
 	public static final String LANGUAGE_PROMPT = "Please select the language:";

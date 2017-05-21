@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import in.pathri.gaana.constants.DownloadParam;
 import in.pathri.gaana.constants.DownloadParam.Quality;
 import in.pathri.gaana.constants.Global;
+import in.pathri.gaana.dao.ExtensionDAO;
 import in.pathri.gaana.dao.User;
 import in.pathri.gaana.downloader.DownloadLinkGenerator;
 import in.pathri.gaana.enums.Language;
@@ -88,6 +89,9 @@ public class UserPrompts {
 	}
 
 	public static SearchType getSearchType() {
+		if(UserPromptStubber.isStubbed()){
+			return UserPromptStubber.getSearchType();
+		}
 		String userResponse = "";
 		SearchType response = null;
 		System.out.println(Global.SEARCHTYPE_PROMPT);
@@ -127,6 +131,9 @@ public class UserPrompts {
 	}
 
 	public static String getAlbumIDs() {
+		if(UserPromptStubber.isStubbed()){
+			return UserPromptStubber.getAlbumIDs();
+		}
 		String userResponse = "";
 		System.out.println("");
 		System.out.println(Global.ALBUM_ID_LIST_PROMPT);
@@ -135,6 +142,9 @@ public class UserPrompts {
 	}
 
 	public static String getTrackIDs() {
+		if(UserPromptStubber.isStubbed()){
+			return UserPromptStubber.getTrackIDs();
+		}		
 		String userResponse = "";
 		System.out.println("");
 		System.out.println(Global.TRACK_ID_LIST_PROMPT);
@@ -160,11 +170,14 @@ public class UserPrompts {
 	}
 
 	public static boolean waitForUserSelection() {
+		if(UserPromptStubber.isStubbed() && UserPromptStubber.stubSearchSelection()){
+			return true;
+		}
 		return yesNoPrompt(Global.DO_WAIT_FOR_SELECTION);
 	}
 
 	public static boolean hasUpdatedResultsSheet() {
-		if (yesNoPrompt(Global.HAS_UPDATED_RESULTS)) {
+		if ((UserPromptStubber.isStubbed() && UserPromptStubber.stubSearchSelection()) || yesNoPrompt(Global.HAS_UPDATED_RESULTS)) {
 			return DownloadLinkGenerator.checkIfResultsUpdated();
 		}
 		return false;
@@ -214,5 +227,14 @@ public class UserPrompts {
 
 	public static void promtDownloadFailure(List<String> failureList) {
 		System.out.println(Global.DOWNLOAD_FAILURE + String.join(";", failureList));
+	}
+
+	public static void awaitExtensionMsg() {
+		System.out.println(Global.WAIT_FOR_EXTENSION);
+		
+	}
+
+	public static void showExtensionSelection() {
+		System.out.println(Global.EXTENSION_SELECTION + ExtensionDAO.getInstance().toString());
 	}
 }

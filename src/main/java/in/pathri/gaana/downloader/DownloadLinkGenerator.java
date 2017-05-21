@@ -161,6 +161,7 @@ public class DownloadLinkGenerator {
 			tempRecord = importer.getNextRecord();
 			if (null != tempRecord) {
 				String hasError = tempRecord[ArrayIndex.DownloadURL.HAS_ERROR];
+				logger.debug("hasError:{}",hasError);
 				if(!Boolean.getBoolean(hasError)){
 					String track_id = tempRecord[ArrayIndex.DownloadURL.TRACK_ID];
 					String downloadURL = tempRecord[ArrayIndex.DownloadURL.DOWNLOAD_URL];

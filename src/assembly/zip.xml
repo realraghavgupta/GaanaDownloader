@@ -18,5 +18,17 @@
             <source>src/main/resources/external/GaanaDownloader.sh</source>
             <outputDirectory>/</outputDirectory>
         </file>      
+		<file>
+			<source>src/main/resources/external/GaanaDownloader_Reg_Install.bat</source>
+			<outputDirectory>/</outputDirectory>
+		</file>
+		<file>
+			<source>src/main/resources/external/GaanaDownloader_Extension.bat</source>
+			<outputDirectory>/</outputDirectory>
+		</file>
+		<file>
+			<source>src/main/resources/external/manifest.json</source>
+			<outputDirectory>/</outputDirectory>
+		</file>        
     </files>
 </assembly>
