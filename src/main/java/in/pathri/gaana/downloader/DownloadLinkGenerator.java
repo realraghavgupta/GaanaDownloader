@@ -51,7 +51,7 @@ public class DownloadLinkGenerator {
 				if (null != downloadURL) {
 					if(downloadURL.startsWith("ERROR_CODE")){
 						hasError = true;
-						String errorCode = downloadURL.replace("ERROR_CODE", "");
+						String errorCode = downloadURL.replace("ERROR_CODE:", "");
 						downloadURL = errorCode + ":" + ErroCodeLookUp.getErrorMessage(errorCode);						
 					} else if(downloadURL.startsWith("UNKNOWN_ERROR")){
 						hasError = true;
