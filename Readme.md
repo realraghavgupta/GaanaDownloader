@@ -41,7 +41,7 @@ https://github.com/PathriK/GaanaDownloader/releases
 
 Latest Snapshot Version (v1.4):
 
-https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-1.4-SNAPSHOT.zip
+https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-2.0-SNAPSHOT.zip
 
 ## Contact:
 Gmail: pathrikumark@gmail.com
@@ -49,6 +49,9 @@ Gmail: pathrikumark@gmail.com
 Gitter: https://gitter.im/PathriK/GaanaDownloader
 
 ## CHANGELOG:
+v1.4(21 May 2017):
+- Fixes #12: Now tool should not stop (hopefully) on errors at track level processing
+
 v1.3(13 May 2017):
 - Fixes #8: Some bugs croppeed up with previous fix. All good now
 - Fixes #11: Was an issue where Excel incorrectly interprets the TrackIds. Fixed by adding "'" before the trackids
