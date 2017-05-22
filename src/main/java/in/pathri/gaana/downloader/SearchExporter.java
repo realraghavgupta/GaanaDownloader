@@ -53,10 +53,10 @@ public class SearchExporter {
 			values[0] = "'" + record.getAsString("album_id");
 			values[1] = "'" + record.getAsString("track_id");
 			values[2] = record.getAsString("album_title");
-			exporter.addRecordValues(values);
 			if(UserPromptStubber.isStubbed() && UserPromptStubber.stubSearchSelection()){
 				values[3] = "yes";
-			}						
+			}				
+			exporter.addRecordValues(values);
 		}
 	}
 
