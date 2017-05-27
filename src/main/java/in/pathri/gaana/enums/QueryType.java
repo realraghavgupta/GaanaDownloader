@@ -53,6 +53,7 @@ public enum QueryType {
 		paramValues.put("subtype", subType);
 		for (String otherParam : otherParams) {
 			String paramValue = getParamsFromUser(otherParam);
+			logger.debug("Got from User::{}", paramValue);
 			if (!paramValue.isEmpty()) {
 				paramValues.put(otherParam, paramValue);
 			}
@@ -75,6 +76,10 @@ public enum QueryType {
 
 	private void updateParams(int prevResultCount) {
 		logger.entry(prevResultCount);
+		if(totalCountSet && totalCount == 0){
+			paramValues.clear();
+			return;
+		}
 		completedCount = completedCount + prevResultCount;
 		if (hasLimitParam) {
 			if (!totalCountSet || completedCount < totalCount) {

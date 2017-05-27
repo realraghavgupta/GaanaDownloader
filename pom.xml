@@ -55,7 +55,7 @@
 		<dependency>
 			<groupId>in.pathri.gaana</groupId>
 			<artifactId>GaanaExtractor</artifactId>
-			<version>2.4</version>
+			<version>2.5</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
 		<dependency>
@@ -159,6 +159,23 @@
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 				</configuration>
 			</plugin>
+<plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <phase>install</phase>
+            <configuration>
+              <target>
+				<unzip src="${project.basedir}/binaries/${project.artifactId}-${project.version}.zip" dest="${project.basedir}/binaries" />
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>			
 		</plugins>
 	</build>
 	<properties>
