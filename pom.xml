@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>in.pathri.gaana</groupId>
 	<artifactId>GaanaDownloader</artifactId>
-	<version>2.1</version>
+	<version>2.2-SNAPSHOT</version>
 	<name>GaanaDownloader</name>
 	<description>Download Songs from Gaana</description>
 	<url>https://github.com/PathriK/GaanaDownloader</url>
@@ -186,7 +186,7 @@
 		<connection>scm:git:git@github.com:PathriK/GaanaDownloader.git</connection>
 		<developerConnection>scm:git:git@github.com:PathriK/GaanaDownloader.git</developerConnection>
 		<url>https://github.com/PathriK/GaanaDownloader</url>
-		<tag>GaanaDownloader-2.1</tag>
+		<tag>HEAD</tag>
 	</scm>
 	<distributionManagement>
 		<repository>
