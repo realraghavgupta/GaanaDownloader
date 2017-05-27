@@ -20,6 +20,10 @@ The mobile App features unlimited download of songs for a small amount of fee. T
 Using this utility, songs can be downloaded in bulk and converted to audio files with proper tags
 Also there is an option to organize the songs into folders named under their Album names
 
+**NEW:** A Chrome Extension is available using which any album/song can be downloaded using Gaana Web itself :) (Steps to do so coming soon...)
+
+https://github.com/PathriK/GaanaDownloader-Extension
+
 ## Usage:
 
 1. Download the latest GaanaDownloader zip file from the below link
@@ -39,9 +43,9 @@ Releases:
 
 https://github.com/PathriK/GaanaDownloader/releases
 
-Latest Snapshot Version (v1.4):
+Latest Snapshot Version (v2.2):
 
-https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-2.0-SNAPSHOT.zip
+https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-2.2-SNAPSHOT.zip
 
 ## Contact:
 Gmail: pathrikumark@gmail.com
@@ -49,6 +53,12 @@ Gmail: pathrikumark@gmail.com
 Gitter: https://gitter.im/PathriK/GaanaDownloader
 
 ## CHANGELOG:
+
+v2.1(27 May 2017):
+- Chrome Extension Support! : [GaanaDownloader-Extension](https://github.com/PathriK/GaanaDownloader-Extension)
+- Fixes #17 - Album & Track IDs should now be taking empty values(Enter key)
+- Fixes #22 - Password should not be appearing in the log
+
 v1.4(21 May 2017):
 - Fixes #12: Now tool should not stop (hopefully) on errors at track level processing
 
