@@ -5,14 +5,15 @@ public enum Language {
 	ENGLISH("english", 2),
 	TAMIL("tamil", 3),
 	TELUGU("telugu", 4),
-	PUNJABI("punjabi", 5),
-	MARATHI("marathi", 6),
-	BENGALI("bengali", 7),
-	BHOJPURI("bhojpuri", 8),
+	MARATHI("marathi", 5),
+	PUNJABI("punjabi", 6),
+	GUJARATI("gujarati", 7),
+	BENGALI("bengali", 8),
 	KANNADA("kannada", 9),
 	MALAYALAM("malayalam", 10),
-	OTHERS("others", 11);
-	
+	BHOJPURI("bhojpuri", 11),
+	ODIA("odia", 12);
+
 	private String value;
 	private int option;
 
