@@ -45,7 +45,8 @@ https://github.com/PathriK/GaanaDownloader/releases
 
 Latest Snapshot Version (v2.2):
 
-https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-2.2-SNAPSHOT.zip
+https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-2.2-SNAPSHOT_windows.zip
+https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-2.2-SNAPSHOT_linux_osx.zip
 
 ## Contact:
 Gmail: pathrikumark@gmail.com

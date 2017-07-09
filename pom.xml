@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>in.pathri.gaana</groupId>
 	<artifactId>GaanaDownloader</artifactId>
@@ -49,7 +50,7 @@
 		<repository>
 			<id>jaudiotagger-repository</id>
 			<url>https://dl.bintray.com/pathrik/PathriK</url>
-		</repository>		
+		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -73,7 +74,7 @@
 			<groupId>it.sauronsoftware</groupId>
 			<artifactId>junique</artifactId>
 			<version>1.0.4</version>
-		</dependency>		
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -90,7 +91,8 @@
 						<configuration>
 							<outputFile>${project.build.directory}/${project.artifactId}.jar</outputFile>
 							<transformers>
-								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<mainClass>in.pathri.gaana.downloader.Trigger</mainClass>
 								</transformer>
 							</transformers>
@@ -101,13 +103,9 @@
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.6</version>
-				<configuration>
-					<finalName>${project.artifactId}-${project.version}</finalName>
-					<appendAssemblyId>false</appendAssemblyId>
-				</configuration>
 				<executions>
 					<execution>
-						<id>assemble</id>
+						<id>win-assemble</id>
 						<goals>
 							<goal>single</goal>
 						</goals>
@@ -115,8 +113,25 @@
 						<configuration>
 							<outputDirectory>binaries</outputDirectory>
 							<descriptors>
-								<descriptor>src/assembly/zip.xml</descriptor>
+								<descriptor>src/assembly/win_zip.xml</descriptor>
 							</descriptors>
+							<finalName>${project.artifactId}-${project.version}_windows</finalName>
+							<appendAssemblyId>false</appendAssemblyId>
+						</configuration>
+					</execution>
+					<execution>
+						<id>nix-assemble</id>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<outputDirectory>binaries</outputDirectory>
+							<descriptors>
+								<descriptor>src/assembly/nix_zip.xml</descriptor>
+							</descriptors>
+							<finalName>${project.artifactId}-${project.version}_linux_osx</finalName>
+							<appendAssemblyId>false</appendAssemblyId>
 						</configuration>
 					</execution>
 				</executions>
@@ -159,23 +174,28 @@
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 				</configuration>
 			</plugin>
-<plugin>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.8</version>
-        <executions>
-          <execution>
-            <phase>install</phase>
-            <configuration>
-              <target>
-				<unzip src="${project.basedir}/binaries/${project.artifactId}-${project.version}.zip" dest="${project.basedir}/binaries" />
-              </target>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>			
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<configuration>
+							<target>
+								<unzip
+									src="${project.basedir}/binaries/${project.artifactId}-${project.version}_windows.zip"
+									dest="${project.basedir}/binaries" />
+								<unzip
+									src="${project.basedir}/binaries/${project.artifactId}-${project.version}_linux_osx.zip"
+									dest="${project.basedir}/binaries" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 	<properties>

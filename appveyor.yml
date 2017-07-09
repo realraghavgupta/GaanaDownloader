@@ -16,7 +16,10 @@ build_script:
 test: off
 
 artifacts:
-  - path: binaries\*$(POM_VERSION).zip
-    name: SnapshotReleases
+  - path: binaries\*$(POM_VERSION)_windows.zip
+    name: SnapshotReleases_Windows
+  - path: binaries\*$(POM_VERSION)_linux_osx.zip
+    name: SnapshotReleases_NIX
+        
 cache:
   - C:\Users\appveyor\.m2
