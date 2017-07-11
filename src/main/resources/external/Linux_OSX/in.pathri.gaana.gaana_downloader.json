@@ -1,7 +1,7 @@
 {
 	"name": "in.pathri.gaana.gaana_downloader",
 	"description": "Gaana Downloader",
-	"path": "HOST_PATH/GaanaDownloader_Extension.sh",
+	"path": "HOST_PATH",
 	"type": "stdio",
 	"allowed_origins": [
 		"chrome-extension://kgcplmdmcippgcemhmegampljjoolnjc/"
