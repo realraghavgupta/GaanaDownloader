@@ -43,11 +43,11 @@ Stable Releases:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://github.com/PathriK/GaanaDownloader/releases
 
-Latest Snapshot Version (v2.2):
+Latest Snapshot Version (v2.3):
 
-[Windows](https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-2.2-SNAPSHOT_windows.zip)
+[Windows](https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-2.3-SNAPSHOT_windows.zip)
 
-[Linux/OSX](https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-2.2-SNAPSHOT_linux_osx.zip)
+[Linux/OSX](https://ci.appveyor.com/api/projects/PathriK/GaanaDownloader/artifacts/binaries/GaanaDownloader-2.3-SNAPSHOT_linux_osx.zip)
 
 ## Contact:
 Gmail: pathrikumark@gmail.com
@@ -55,6 +55,11 @@ Gmail: pathrikumark@gmail.com
 Gitter: https://gitter.im/PathriK/GaanaDownloader
 
 ## CHANGELOG:
+
+v2.2(30 June 2017):
+- Fixes #16 - Suppported Language List Updated
+- Support for Mac/Linux (Not thoroughly tested)
+- Seperate Binaries for Windows and Mac/Linux
 
 v2.1(27 May 2017):
 - Chrome Extension Support! : [GaanaDownloader-Extension](https://github.com/PathriK/GaanaDownloader-Extension)
