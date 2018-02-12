@@ -1,9 +1,19 @@
-# Gaana Downloader
+# Gaana Downloader [NOT MAINTAINED]
 
 [![Join the chat at https://gitter.im/PathriK/GaanaDownloader](https://badges.gitter.im/PathriK/GaanaDownloader.svg)](https://gitter.im/PathriK/GaanaDownloader?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/PathriK/GaanaDownloader.svg?branch=master)](https://travis-ci.org/PathriK/GaanaDownloader) [![Build status](https://ci.appveyor.com/api/projects/status/32jy46yxmtve2yav?svg=true)](https://ci.appveyor.com/project/PathriK/gaanadownloader)
 
 
 A Java tool to download and convert songs to MP3 from Gaana in Bulk
+
+<pre>
+<b>
+I am extremely sorry. 
+Currently I am not able to continue supporting this project and not sure whether this tool is still working. 
+Would be happy to transfer ownership to anyone who would like to continue developing/maintaining this tool
+under one condition that this always stays as open source and free. 
+Kindly mail me @ pathrikumark@gmail.com if any one is interested
+</b>
+</pre>
 
 <pre>
 <b>Note:</b>
